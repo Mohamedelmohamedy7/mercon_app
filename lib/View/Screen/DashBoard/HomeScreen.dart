@@ -14,6 +14,7 @@ import '../../../Provider/HomeProvider.dart';
 import '../../../Provider/UnitsProvider.dart';
 import '../../../Utill/AnimationWidget.dart';
 import '../../../Utill/Comman.dart';
+import '../../../WeatherService.dart';
 import '../../../helper/EnumLoading.dart';
 import '../../../helper/ImagesConstant.dart';
 import '../../Widget/HomeWidgets/CarousalWidget.dart';
@@ -31,73 +32,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   HomeProvider? home_provider;
-  Widget languageDropdown(BuildContext context) {
-    return InkWell(
-      child:Row(children: [
-        context.locale == Locale('ar', 'EG')?
-        Image.asset('assets/images/eg.png', width: 30):
-        Image.asset('assets/images/us.png', width: 30),
-        Icon(Icons.keyboard_arrow_down_sharp,color: Colors.black,size: 25,)
-      ],) ,
-      onTap: (){
-        showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              insetPadding: EdgeInsets.symmetric(horizontal: 25),
 
-              title: Text("selectLanguage".tr(),style:
-              CustomTextStyle.bold16White.copyWith(
-                color: Colors.black
-              ),),
-              content: Container(
-                width: MediaQuery.of(context).size.width,
-                 child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          border: Border.all(color: Colors.grey),
-                          borderRadius: BorderRadius.circular(15)
-                        ),
-                        child: ListTile(
-                          leading: Image.asset('assets/images/eg.png', width: 30),
-                          title: Text("العربية", style: TextStyle(fontSize: 14)),
-                          onTap: () {
-                            context.locale = Locale('ar', 'EG');
-                            Navigator.of(context).pop();
-                          },
-                        ),
-                      ),
-                      SizedBox(height: 10,),
-                      Container(
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            border: Border.all(color: Colors.grey),
-                            borderRadius: BorderRadius.circular(15)
-                        ),
-                        child: ListTile(
-                          leading: Image.asset('assets/images/us.png', width: 30),
-                          title: Text("English", style: TextStyle(fontSize: 14)),
-                          onTap: () {
-                            context.locale = Locale('en', 'US');
-                            Navigator.of(context).pop();
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            );
-          },
-        );
-      },
-    );
-  }
-  @override
+   @override
   Widget build(BuildContext context) {
     return SafeArea(
       top: false,
@@ -205,31 +141,25 @@ class _HomeScreenState extends State<HomeScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               DefaultTextStyle(
-                style: CustomTextStyle.semiBold14grey.copyWith(fontSize: 18,color: Colors.white),
+                textAlign: TextAlign.left,
+                style: CustomTextStyle.semiBold14grey.copyWith(fontSize: 14,color: Colors.white),
                 child: AnimatedTextKit(
                   repeatForever: false,
                   isRepeatingAnimation: false,
                   animatedTexts: [
+                    TypewriterAnimatedText("  "),
                     TypewriterAnimatedText(
-                        "HI , ${globalAccountData.getUsername()}"),
+                        " ${"Welcome".tr()},${globalAccountData.getUsername()} "),
                   ],
                 ),
               ),
-              Row(
-                children: [
-                  Text(
-                    'AppNameOnHome'.tr(namedArgs: {
-                      'comName': globalAccountData.getCompoundName()??""
-                    }),
-                    style: CustomTextStyle.semiBold14grey.copyWith(fontSize: 14,color: lightBrown),
-                  ),
-                ],
-              ),
+              WeatherScreen(),
             ],
           ),
         ),
-        // cachedImage(ImagesConstants.logo, width: 80, height: 60),
-        cachedImage(globalAccountData.getCompoundLogo(), width: 80, height: 60),
+
+        cachedImage(ImagesConstants.logo, width: 110, height: 60),
+        // cachedImage(globalAccountData.getCompoundLogo(), width: 40, height: 40),
         10.width,
       ],
     );

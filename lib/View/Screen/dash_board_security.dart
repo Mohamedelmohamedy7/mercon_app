@@ -120,6 +120,7 @@ class _DashBoardSecurityState extends State<DashBoardSecurity> {
 
 Widget floatingLogo({required BuildContext context}) {
   return Container(
+    padding: EdgeInsets.all(20),
     decoration: BoxDecoration(
         color: Theme.of(context).primaryColor,
         border: Border.all(color: Colors.white, width: 2),
@@ -129,7 +130,7 @@ Widget floatingLogo({required BuildContext context}) {
     child: Center(
       child: cachedImage(
         globalAccountData.getCompoundLogo().toString(),
-        width: 100,
+        width: 110,
         height: 50,
         fit: BoxFit.contain,
       ),

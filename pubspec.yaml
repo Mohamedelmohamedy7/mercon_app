@@ -94,6 +94,8 @@ dependencies:
   flutter_youtube_view:
   youtube_player_iframe:
   qr_flutter:
+  geolocator:
+  geocoding:
   #  permission_handler: ^11.3.0
   dio: ^5.4.2
   gallery_saver:
