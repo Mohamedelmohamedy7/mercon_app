@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:core_project/Utill/Comman.dart';
 import 'package:core_project/helper/text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -100,41 +101,39 @@ class _WeatherScreenState extends State<WeatherScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: loading
-          ? cachedImage(ImagesConstants.logo, width: 50, height: 50)
-          : Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-         children: [
-          Icon(
-            getWeatherIcon(
-              main: weatherMain,
-              description: description,
-              iconCode: iconCode,
-              temp: temp,
-            ),
-            color: getWeatherColor(temp, weatherMain),
-            size: 22,
+    return loading
+        ? SizedBox()
+        : Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+       children: [
+        Icon(
+          getWeatherIcon(
+            main: weatherMain,
+            description: description,
+            iconCode: iconCode,
+            temp: temp,
           ),
-          const SizedBox(width: 6),
-          Text(
-            '${temp.toStringAsFixed(1)}°C',
-            style: CustomTextStyle.regular14Gray.copyWith(
-              fontSize: 15,
-              fontWeight: FontWeight.w600,
-              color: Colors.white,
-            ),
+          color: getWeatherColor(temp, weatherMain),
+          size: 22,
+        ),
+        const SizedBox(width: 6),
+        Text(
+          '${temp.toStringAsFixed(1)}°C',
+          style: CustomTextStyle.regular14Gray.copyWith(
+            fontSize: 15,
+            fontWeight: FontWeight.w600,
+            color: Colors.white,
           ),
-          const SizedBox(width: 4),
-          Text(
-            '• $description',
-            style: CustomTextStyle.regular14Black.copyWith(
-              fontSize: 11,
-              color: Colors.white70,
-            ),
+        ),
+        const SizedBox(width: 4),
+        Text(
+          '• ${condation(context)?weatherMain:description}',
+          style: CustomTextStyle.regular14Black.copyWith(
+            fontSize: 11,
+            color: Colors.white70,
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
@@ -166,6 +165,6 @@ IconData getWeatherIcon({
 Color getWeatherColor(double temp, String main) {
   if (temp <= 5) return Colors.lightBlueAccent;
   if (temp >= 35) return Colors.orange;
-  if (main == 'Clouds') return Colors.grey;
+  if (main == 'Clouds') return Colors.grey.shade200;
   return Colors.white;
 }

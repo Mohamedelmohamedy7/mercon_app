@@ -14,6 +14,7 @@ class NotificationProvider extends ChangeNotifier{
     startLoader();
     final res = await getFunctionRestApi(context, urlEndPoint: "$GET_ALL_NOTIFICATION${globalAccountData.getId().toString()}");
     for (NotificationModel unitModelItem in parseNotificationModel(res)) {
+      unitModelItem.url = "assets/images/newsIcon.png";
       myNotification.add(unitModelItem);
     }
     S_finishLoader();

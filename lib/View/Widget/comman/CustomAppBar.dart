@@ -14,19 +14,22 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final ImageProvider<Object> backgroundImage;
   bool? needBack;
 
+  Widget? bottom;
+
   CustomAppBar({
     super.key,
     this.needBack = true,
     required this.title,
     required this.backgroundImage,
     this.leading,
+    this.bottom,
   });
 
 //backGroundOrder.png
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.079,
+      height: MediaQuery.of(context).size.height * 0.13,
       // decoration: BoxDecoration(
       //   image: DecorationImage(
       //     image: backgroundImage,
@@ -90,6 +93,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               height: 3,
               color: Theme.of(context).primaryColor,
             ),
+            bottom??SizedBox(),
           ],
         ),
       ),

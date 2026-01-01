@@ -51,8 +51,11 @@ class Assets {
   static const String imagesEdit = 'assets/images/edit.svg';
   static const String imagesEg = 'assets/images/eg.png';
   static const String imagesEmail = 'assets/images/email.svg';
+  static const String imagesEventsIcon = 'assets/images/eventsIcon.png';
   static const String imagesFailedScan = 'assets/images/failedScan.json';
   static const String imagesFamily = 'assets/images/family.png';
+  static const String imagesFestival = 'assets/images/festival.json';
+  static const String imagesFinanceIcon = 'assets/images/financeIcon.png';
   static const String imagesFlash = 'assets/images/flash.svg';
   static const String imagesFloat = 'assets/images/float.png';
   static const String imagesGuest = 'assets/images/guest.svg';
@@ -79,6 +82,7 @@ class Assets {
   static const String imagesNational = 'assets/images/national.svg';
   static const String imagesNew = 'assets/images/new.png';
   static const String imagesNewLogo = 'assets/images/new_logo.png';
+  static const String imagesNewsIcon = 'assets/images/newsIcon.png';
   static const String imagesNotification = 'assets/images/notification.png';
   static const String imagesOwner = 'assets/images/owner.svg';
   static const String imagesPassowrd = 'assets/images/passowrd.json';

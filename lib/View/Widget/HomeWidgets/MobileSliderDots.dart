@@ -16,11 +16,15 @@ class MobileSliderDots extends StatelessWidget {
       alignment: Alignment.bottomCenter,
       child: DotsIndicator(
         dotsCount: Provider.of<HomeProvider>(context).mobileSliders.length,
-        position:_currentPage ,
+        position: _currentPage,
         decorator: DotsDecorator(
-          size: const Size(10, 10),
-          color: lightGray, // Inactive dot color
-          activeColor: Colors.white, // Active dot color
+          size: const Size(9, 13),          // باقي النقط
+          activeSize: const Size(32, 10),    // النقطة الـ Active أطول
+          color: lightGray,
+          activeColor: Colors.white,
+          activeShape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5),
+          ),
         ),
       ),
     );
