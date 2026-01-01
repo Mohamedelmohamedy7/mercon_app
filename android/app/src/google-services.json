@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "269342687027",
+    "project_id": "the-gate-coronado",
+    "storage_bucket": "the-gate-coronado.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:269342687027:android:76e522f50835ba3b394846",
+        "android_client_info": {
+          "package_name": "com.thegate.cornado"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAiEomhAvhAQkTBhWZ7EYAxC57gDk5xxDA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:269342687027:android:ad285efb6c117e7c394846",
+        "android_client_info": {
+          "package_name": "com.thegate.coronado"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAiEomhAvhAQkTBhWZ7EYAxC57gDk5xxDA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:269342687027:android:557651fac6e371b4394846",
+        "android_client_info": {
+          "package_name": "com.thegatemultivendor.coronado"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAiEomhAvhAQkTBhWZ7EYAxC57gDk5xxDA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
