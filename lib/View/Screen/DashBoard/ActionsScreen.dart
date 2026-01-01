@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:core_project/Provider/ConfigProvider.dart';
 import 'package:core_project/Provider/LoginProvider.dart';
+import 'package:core_project/View/Screen/AllComplsinsScreen.dart';
 import 'package:core_project/View/Screen/ComplainScreen.dart';
 import 'package:core_project/View/Screen/SuperAdminScreens/ChairRequest/ChairRequestsListScreen.dart';
 import 'package:core_project/View/Screen/SuperAdminScreens/ChairRequest/CreateOrUpdateChairRequestScreen.dart';
@@ -174,7 +175,8 @@ class _ActionsScreenState extends State<ActionsScreen>
                   "Complaints_and_Suggestions",
                   textFieldSvg("message.svg"),
                       () => pushRoute(
-                      context: context, route:  ComplaintFormScreen(needBack: true,))),
+                      context: context, route: AllComplaintsScreen(needBack: true,)// ComplaintFormScreen(needBack: true,),
+              )),
               20.height,
               containerNotification(
                   context,

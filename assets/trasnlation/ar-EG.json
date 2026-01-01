@@ -539,5 +539,8 @@
   "error_national_id": "برجاء إدخال رقم قومي مكون من ١٤ رقمًا صحيحًا",
   "error_car_plate": "رقم اللوحة غير صحيح",
   "car_plate":"رقم لوحة السيارة",
-  "accept_or_reject_units": "من فضلك قم بقبول او رفض الوحدات قبل الموافقة علي الطلب"
+  "accept_or_reject_units": "من فضلك قم بقبول او رفض الوحدات قبل الموافقة علي الطلب",
+  "upload_image_gallery": "تحميل صورة\nمن المعرض",
+  "upload_image_camera": "تحميل صورة\nمن الكاميرا",
+  "add_complaint": "إضافة شكوى"
 }

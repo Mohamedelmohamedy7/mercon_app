@@ -9,7 +9,7 @@ ThemeData dark = ThemeData(
   hintColor: const Color(0xFFc7c7c7),
   colorScheme: const ColorScheme.dark(
     primary: Color(0xFF64BDF9),
-    secondary: Color(0xFF78BDFC),
+    secondary: Color(0xFFF6EFE7),
     tertiary: Color(0xFF865C0A),
     tertiaryContainer: Color(0xFF6C7A8E),
     onTertiaryContainer: Color(0xFF0F5835),

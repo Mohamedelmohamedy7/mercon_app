@@ -66,7 +66,6 @@ class Assets {
   static const String imagesLocation = 'assets/images/location.svg';
   static const String imagesLock = 'assets/images/lock.svg';
   static const String imagesLockIcon = 'assets/images/lockIcon.png';
-  static const String imagesLockIcon copy = 'assets/images/lockIcon copy.png';
   static const String imagesLogo = 'assets/images/logo.png';
   static const String imagesLogoFloatAction = 'assets/images/logoFloatAction.png';
   static const String imagesLogoNew = 'assets/images/logo_new.jpeg';
@@ -99,10 +98,6 @@ class Assets {
   static const String imagesUploadVideo = 'assets/images/uploadVideo.json';
   static const String imagesUs = 'assets/images/us.png';
   static const String imagesUser = 'assets/images/user.svg';
-  static const String imagesVector 1 = 'assets/images/Vector 1.png';
-  static const String imagesVector 2 = 'assets/images/Vector 2.png';
-  static const String imagesVector 3 = 'assets/images/Vector 3.png';
-  static const String imagesVector 4 = 'assets/images/Vector 4.png';
   static const String imagesYoutube = 'assets/images/youtube.jpg';
   static const String trasnlationArEG = 'assets/trasnlation/ar-EG.json';
   static const String trasnlationEnUS = 'assets/trasnlation/en-US.json';

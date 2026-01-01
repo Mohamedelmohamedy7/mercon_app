@@ -133,6 +133,7 @@ flutter:
     - assets/fonts/
     - assets/images/
     - assets/images/emoj/
+    - assets/images/com/
   fonts:
     - family: NewFonts
       fonts:
