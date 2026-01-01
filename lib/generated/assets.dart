@@ -5,6 +5,10 @@ class Assets {
   static const String assetsImagesPerson = 'assets/images/person.svg';
   static const String assetsImagesQrcode = 'assets/images/qrcode.json';
   static const String assetsImagesTheGate = 'assets/images/the_gate.jpeg';
+  static const String comCom1 = 'assets/images/com/com_1.png';
+  static const String comCom2 = 'assets/images/com/com_2.png';
+  static const String comCom3 = 'assets/images/com/com_3.png';
+  static const String comCom4 = 'assets/images/com/com_4.png';
   static const String emojClassicAwesome = 'assets/images/emoj/classic_awesome.svg';
   static const String emojClassicBad = 'assets/images/emoj/classic_bad.svg';
   static const String emojClassicGood = 'assets/images/emoj/classic_good.svg';
@@ -40,10 +44,12 @@ class Assets {
   static const String images7menu = 'assets/images/7menu.jpeg';
   static const String images8menu = 'assets/images/8menu.jpeg';
   static const String imagesAddImage = 'assets/images/addImage.json';
+  static const String imagesArrow = 'assets/images/arrow.svg';
   static const String imagesBackGroundOrder = 'assets/images/backGroundOrder.png';
   static const String imagesBackground = 'assets/images/background.png';
   static const String imagesBlocked = 'assets/images/blocked.json';
   static const String imagesBook = 'assets/images/book.svg';
+  static const String imagesCamira = 'assets/images/camira.svg';
   static const String imagesCompound = 'assets/images/compound.svg';
   static const String imagesDelivery = 'assets/images/delivery.json';
   static const String imagesDeliverymenu = 'assets/images/deliverymenu.json';
@@ -58,6 +64,7 @@ class Assets {
   static const String imagesFinanceIcon = 'assets/images/financeIcon.png';
   static const String imagesFlash = 'assets/images/flash.svg';
   static const String imagesFloat = 'assets/images/float.png';
+  static const String imagesGallery = 'assets/images/gallery.svg';
   static const String imagesGuest = 'assets/images/guest.svg';
   static const String imagesHelp = 'assets/images/help.svg';
   static const String imagesHome = 'assets/images/Home.svg';
@@ -72,6 +79,7 @@ class Assets {
   static const String imagesLockIcon copy = 'assets/images/lockIcon copy.png';
   static const String imagesLogo = 'assets/images/logo.png';
   static const String imagesLogoFloatAction = 'assets/images/logoFloatAction.png';
+  static const String imagesLogoM = 'assets/images/logo_m.png';
   static const String imagesLogoNew = 'assets/images/logo_new.jpeg';
   static const String imagesLogout = 'assets/images/logout.svg';
   static const String imagesMXxGLf5x75 = 'assets/images/MXxGLf5x75.json';
@@ -97,6 +105,7 @@ class Assets {
   static const String imagesScanQrcodeProeccs = 'assets/images/scanQrcodeProeccs.json';
   static const String imagesSecurity = 'assets/images/security.svg';
   static const String imagesServiceClient = 'assets/images/serviceClient.png';
+  static const String imagesSplashScreen = 'assets/images/splashScreen.png';
   static const String imagesSuccessScan = 'assets/images/successScan.json';
   static const String imagesTheGate = 'assets/images/the_gate.png';
   static const String imagesUnit = 'assets/images/unit.svg';

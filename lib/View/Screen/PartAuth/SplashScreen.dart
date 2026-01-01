@@ -1,8 +1,10 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:core_project/Provider/LoginProvider.dart';
 import 'package:core_project/Utill/Local_User_Data.dart';
 import 'package:core_project/View/Screen/PartAuth/LoginScreen.dart';
 import 'package:core_project/check_user_type.dart';
 import 'package:flutter/material.dart';
+import 'package:nb_utils/nb_utils.dart';
 import 'package:provider/provider.dart';
 import 'package:upgrader/upgrader.dart';
 import '../../../Provider/ConfigProvider.dart';
@@ -98,21 +100,63 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Center(
-        child: Stack(
-          children: <Widget>[
-            // cachedImage(ImagesConstants.backgroundImage,
-            //     width: w(context), height: h(context), fit: BoxFit.cover),
-            Center(
-              child: Image.asset(
-                ImagesConstants.logo,
-                width: 200,
-                height: 250,color: Theme.of(context).primaryColor,
-              ),
+      body:Stack(
+        children: <Widget>[
+          cachedImage(
+            "assets/images/splashScreen.png",
+            width: w(context),
+            height: h(context),
+            fit: BoxFit.cover,
+          ),
+          Center(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                FadeInLeft(
+                  child: cachedImage(
+                    "assets/images/logo_2.png",
+                    width: 80,
+                    height: 70,
+                    fit: BoxFit.contain,
+                    color: Colors.white,
+                  ),
+                ),
+                FadeInDown(
+                  child: cachedImage(
+                    "assets/images/logo_3.png",
+                    width: 60,
+                    height: 70,
+                    fit: BoxFit.contain,
+                    color: Colors.white,
+                  ),
+                ),
+                FadeInRight(
+                  child: cachedImage(
+                    "assets/images/logo_1.png",
+                    width: 90,
+                    height: 90,
+                    fit: BoxFit.contain,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
+          ),
+           FadeInUp(
+             duration: const Duration(seconds: 2),
+             child: Align(
+              alignment: Alignment(0, 1.05),
+              child: cachedImage(
+                "assets/images/company.png",
+                width: 120,
+                height: 120,
+              ),
+                       ),
+           ),
+        ],
+      )
+
     );
   }
 }

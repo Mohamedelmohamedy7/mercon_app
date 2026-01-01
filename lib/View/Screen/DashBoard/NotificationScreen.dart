@@ -97,7 +97,6 @@ class _NotificationScreenState extends State<NotificationScreen> with SingleTick
                       child: Lottie.asset("assets/images/festival.json",repeat: false ))
                 ],
               ),
-
             ],
           ),
         ),

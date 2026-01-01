@@ -29,7 +29,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.13,
+      height: bottom == null ? MediaQuery.of(context).size.height * 0.079:
+      MediaQuery.of(context).size.height * 0.13,
       // decoration: BoxDecoration(
       //   image: DecorationImage(
       //     image: backgroundImage,
@@ -81,7 +82,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                   // child: cachedImage( ImagesConstants.logo, width: 50, height: 50),
                   child: cachedImage(
                       globalAccountData.getCompoundLogo(),
-                      width: 50,
+                      width: 40,
                       height: 50,
                     color: Theme.of(context).primaryColor
                       ),

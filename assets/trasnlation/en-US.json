@@ -565,7 +565,10 @@
   "error_national_id": "Enter a valid 14-digit National ID number",
   "error_car_plate": "Invalid car plate number",
   "car_plate":"Car Plate Number",
-  "accept_or_reject_units_en": "Please accept or reject the units before approving the request"
+  "accept_or_reject_units_en": "Please accept or reject the units before approving the request",
+  "upload_image_gallery": "Upload image\nfrom gallery",
+  "upload_image_camera": "Take photo\nusing camera",
+  "add_complaint": "Add Complaint"
 }
 
 
