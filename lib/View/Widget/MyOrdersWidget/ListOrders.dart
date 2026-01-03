@@ -34,7 +34,15 @@ TextStyle headerStyle() {
 }
 
   emptyList() {
-  return Lottie.asset("assets/images/MXxGLf5x75.json");
+  return Center(child: Column(
+    mainAxisAlignment: MainAxisAlignment.center,
+    crossAxisAlignment: CrossAxisAlignment.center,
+    children: [
+      Lottie.asset("assets/images/noData.json",height: 230,width: 230,fit: BoxFit.contain),
+      Text("noDataFound".tr(),style: CustomTextStyle.bold14black,),
+      50.height
+    ],
+  ));
 }
 
 ListView shimmerList() {

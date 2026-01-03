@@ -4,14 +4,17 @@ import 'package:core_project/helper/text_style.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:provider/provider.dart';
 import '../../Provider/UnitsProvider.dart';
+import '../../Utill/Comman.dart';
 import '../../helper/ImagesConstant.dart';
 import '../../helper/color_resources.dart';
 import '../Widget/MyOrdersWidget/ListOrders.dart';
 import '../Widget/comman/CustomAppBar.dart';
 import 'Services/ServicesCategories.dart';
+import 'UnitDetailsScreen.dart';
 
 
 
@@ -151,185 +154,301 @@ class _UnitsOwnerState extends State<UnitsOwner> {
                 }else {
                   return model.ownersPayment==null||model.ownersPayment.isEmpty? emptyList() :
                   model.ownersPayment.first.ownerPayments.isEmpty ? emptyList() :
-                  ListView.separated(
-                      shrinkWrap: true,
-                      padding: const EdgeInsets.only(top: 0),
-                      itemBuilder: (context, index) {
-                        return  model.ownersPayment[index].ownerPayments.isEmpty? SizedBox.shrink(): Container(
-                          decoration: BoxDecoration(
-                          ),
-                          padding: EdgeInsets.symmetric(horizontal: 10),
+                    ListView.separated(
+                    padding: const EdgeInsets.all(10),
+                    itemCount: model.ownersPayment.length,
+                    separatorBuilder: (_, __) => 10.height,
+                    itemBuilder: (context, index) {
+                      final unit = model.ownersPayment[index];
+
+                      if (unit.ownerPayments.isEmpty) return SizedBox.shrink();
+
+                      return Card(
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                        elevation: 3,
+                        child: Padding(
+                          padding: const EdgeInsets.all(12.0),
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              10.height,
+                              // Header الوحدة
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Container(
-                                    margin: EdgeInsets.all(10),
-                                    padding: EdgeInsets.all(10),
-                                    decoration: BoxDecoration(
-                                      color:Colors.white,
-                                      borderRadius: BorderRadius.circular(15),
-                                      border: Border.all(
-                                        color: Colors.white,
-                                        width: 1,
+                                  Icon(Icons.home, color: Theme.of(context).primaryColor),
+                                  10.width,
+                                  Expanded(
+                                    child: Text(
+                                      unit.unitName?.replaceAll("-", " : ") ?? '',
+                                      style: CustomTextStyle.bold14black.copyWith(
+                                        color: Theme.of(context).primaryColor,
+                                        fontSize: 14,
                                       ),
                                     ),
+                                  ),
+                                ],
+                              ),
+                              10.height,
+
+                              // List الدفعات
+                              Column(
+                                children: unit.ownerPayments.map((payment) {
+                                  return Padding(
+                                    padding: const EdgeInsets.symmetric(vertical: 5),
                                     child: Row(
                                       children: [
-                                        Text(
-                                          '${(model.ownersPayment[index].unitName)?.replaceAll("-", " : ")}',
-                                          style: CustomTextStyle.bold14black.copyWith(
-                                            color:Theme.of(context).primaryColor,
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w500,
+                                        Icon(
+                                          payment.isPaid.toString() == "true"
+                                              ? Icons.check_circle
+                                              : Icons.cancel,
+                                          color: payment.isPaid.toString() == "true"
+                                              ? Colors.green
+                                              : Colors.red,
+                                          size: 20,
+                                        ),
+                                        10.width,
+                                        Expanded(
+                                          child: Text(
+                                            DateConverter.isoStringToLocalDateOnly(payment.createdDate.toString()),
+                                            style: CustomTextStyle.regular14Black,
                                           ),
+                                        ),
+                                        Text(
+                                          "${payment.value} EGP",
+                                          style: CustomTextStyle.bold14black,
                                         ),
                                       ],
                                     ),
-                                  ),
-                                ],
+                                  );
+                                }).toList(),
                               ),
-                              5.height,
-                              Table(
-                                border: TableBorder.all(
-                                  color: Colors.black,
-                                  width: 1,
-                                ),
 
+                              Divider(color: Colors.grey, height: 20),
+
+                              // Footer المجموع
+                              Row(
                                 children: [
-                                  TableRow(
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
-                                      TableCell(
-                                        child: Container(
-                                          padding: EdgeInsets.symmetric(vertical: 5),
-                                          decoration: BoxDecoration(
-                                            color: Theme.of(context).primaryColor,
-                                          ),
-                                          child: Center(
-                                            child: Text(
-                                              "السنة",
-                                              style: CustomTextStyle.regular14Black.copyWith(
-                                                  color: Colors.white,fontWeight: FontWeight.w500
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      TableCell(
-                                        child: Container(
-                                          padding: EdgeInsets.symmetric(vertical: 5),
-                                          decoration: BoxDecoration(
-                                            color: Theme.of(context).primaryColor,
-                                          ),
-                                          child: Center(
-                                            child: Text(
-                                              "حالة الدفع",
-                                              style: CustomTextStyle.regular14Black.copyWith(
-                                                  color: Colors.white,fontWeight: FontWeight.w500
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      TableCell(
-                                        child: Container(
-                                          padding: EdgeInsets.symmetric(vertical: 5),
-                                          decoration: BoxDecoration(
-                                            color: Theme.of(context).primaryColor,
-                                          ),
-                                          child: Center(
-                                            child: Text(
-                                              'القيمة',
-                                              style: CustomTextStyle.regular14Black.copyWith(
-                                                  color: Colors.white,fontWeight: FontWeight.w500
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
+                                      Text("totalPaid".tr() + " : ${unit.paidDone} EGP",
+                                          style: CustomTextStyle.semiBold14Black),
+                                      Text("totalUnpaid".tr() + " : ${unit.notPaid} EGP",
+                                          style: CustomTextStyle.semiBold14Black),
                                     ],
                                   ),
-                                  for (var payment in model.ownersPayment[index].ownerPayments)...[
-                                    TableRow(
-                                      children: [
-                                        TableCell(
-                                          child: Center(
-                                            child: Padding(
-                                              padding: const EdgeInsets.symmetric(vertical: 5),
-                                              child: Text(
-                                                DateConverter.isoStringToLocalDateOnly(payment.createdDate.toString()),
-                                                style: CustomTextStyle.medium14LightBlack,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        TableCell(
-                                          child: Center(
-                                            child: Padding(
-                                              padding: const EdgeInsets.symmetric(vertical: 5),
-                                              child: Text(
-                                                payment.isPaid.toString()=="true"?"paid".tr():"unpaid".tr(),
-                                                style: CustomTextStyle.regular14Black,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        TableCell(
-                                          child: Center(
-                                            child: Padding(
-                                              padding: const EdgeInsets.symmetric(vertical: 5),
-                                              child: Text(
-                                                payment.value.toString() + "EGP".tr(),
-                                                style: CustomTextStyle.regular14Black,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
+                                  Spacer(),
+                                  InkWell(
+                                    onTap: () {
+                                      pushRoute(context: context, route:   UnitDetailsScreen(
+                                        unit: unit,
+                                      ));
+                                    },
+                                    child: Container(
+                                      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                                      decoration: BoxDecoration(
+                                        color: Theme.of(context).primaryColor ,
+                                        borderRadius: BorderRadius.circular(5),
+                                      ),
+                                      child: Row(
+                                        children: [
+                                          Text("details".tr(),
+                                          style: CustomTextStyle.semiBold14Black.copyWith(color: Colors.white,
+                                          fontSize: 12),),
+                                          5.width,
+                                          Icon(Icons.arrow_forward_ios, color:Colors.white,
+                                          size: 14,),
+                                        ],
+                                      ),
                                     ),
-
-                                  ]
-
+                                  )
                                 ],
-                              ),
-                              10.height,
-                              Column(
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Text("totalPaid".tr(),style: CustomTextStyle.regular14Black.copyWith(
-                                          fontSize: 12,
-                                        ),),
-                                        Text(" : ",style: CustomTextStyle.regular14Black.copyWith(fontSize: 12,)),
-                                        SizedBox(width: 30,),
-                                        Text(model.ownersPayment[index].paidDone.toString() + " " + "EGP".tr(),
-                                          style: CustomTextStyle.regular14Black,textAlign: TextAlign.start,),
-                                      ],
-                                    ),
-
-                                    Row(
-                                      children: [
-                                        Text("totalUnpaid".tr(),style: CustomTextStyle.regular14Black.copyWith(
-                                          fontSize: 12,
-                                        ),),
-                                        Text(" : ",style: CustomTextStyle.regular14Black.copyWith(fontSize: 12,)),
-                                        SizedBox(width: 17,),
-                                        Text(model.ownersPayment[index].notPaid.toString() + " " + "EGP".tr(),style: CustomTextStyle.regular14Black,
-                                          textAlign: TextAlign.start,),
-                                      ],
-                                    ),
-
-                                  ]
                               ),
                             ],
                           ),
-                        );
-                      },
-                      separatorBuilder: (context, index) => 0.height,
-                      itemCount: model.ownersPayment.length);
+                        ),
+                      );
+                    },
+                  );
+                  // ListView.separated(
+                  //     shrinkWrap: true,
+                  //     padding: const EdgeInsets.only(top: 0),
+                  //     itemBuilder: (context, index) {
+                  //       return  model.ownersPayment[index].ownerPayments.isEmpty? SizedBox.shrink(): Container(
+                  //         decoration: BoxDecoration(
+                  //         ),
+                  //         padding: EdgeInsets.symmetric(horizontal: 10),
+                  //         child: Column(
+                  //           crossAxisAlignment: CrossAxisAlignment.center,
+                  //           children: [
+                  //             10.height,
+                  //             Row(
+                  //               mainAxisAlignment: MainAxisAlignment.center,
+                  //               children: [
+                  //                 Container(
+                  //                   margin: EdgeInsets.all(10),
+                  //                   padding: EdgeInsets.all(10),
+                  //                   decoration: BoxDecoration(
+                  //                     color:Colors.white,
+                  //                     borderRadius: BorderRadius.circular(15),
+                  //                     border: Border.all(
+                  //                       color: Colors.white,
+                  //                       width: 1,
+                  //                     ),
+                  //                   ),
+                  //                   child: Row(
+                  //                     children: [
+                  //                       Text(
+                  //                         '${(model.ownersPayment[index].unitName)?.replaceAll("-", " : ")}',
+                  //                         style: CustomTextStyle.bold14black.copyWith(
+                  //                           color:Theme.of(context).primaryColor,
+                  //                           fontSize: 12,
+                  //                           fontWeight: FontWeight.w500,
+                  //                         ),
+                  //                       ),
+                  //                     ],
+                  //                   ),
+                  //                 ),
+                  //               ],
+                  //             ),
+                  //             5.height,
+                  //             Table(
+                  //               border: TableBorder.all(
+                  //                 color: Colors.black,
+                  //                 width: 1,
+                  //               ),
+                  //
+                  //               children: [
+                  //                 TableRow(
+                  //                   children: [
+                  //                     TableCell(
+                  //                       child: Container(
+                  //                         padding: EdgeInsets.symmetric(vertical: 5),
+                  //                         decoration: BoxDecoration(
+                  //                           color: Theme.of(context).primaryColor,
+                  //                         ),
+                  //                         child: Center(
+                  //                           child: Text(
+                  //                             "السنة",
+                  //                             style: CustomTextStyle.regular14Black.copyWith(
+                  //                                 color: Colors.white,fontWeight: FontWeight.w500
+                  //                             ),
+                  //                           ),
+                  //                         ),
+                  //                       ),
+                  //                     ),
+                  //                     TableCell(
+                  //                       child: Container(
+                  //                         padding: EdgeInsets.symmetric(vertical: 5),
+                  //                         decoration: BoxDecoration(
+                  //                           color: Theme.of(context).primaryColor,
+                  //                         ),
+                  //                         child: Center(
+                  //                           child: Text(
+                  //                             "حالة الدفع",
+                  //                             style: CustomTextStyle.regular14Black.copyWith(
+                  //                                 color: Colors.white,fontWeight: FontWeight.w500
+                  //                             ),
+                  //                           ),
+                  //                         ),
+                  //                       ),
+                  //                     ),
+                  //                     TableCell(
+                  //                       child: Container(
+                  //                         padding: EdgeInsets.symmetric(vertical: 5),
+                  //                         decoration: BoxDecoration(
+                  //                           color: Theme.of(context).primaryColor,
+                  //                         ),
+                  //                         child: Center(
+                  //                           child: Text(
+                  //                             'القيمة',
+                  //                             style: CustomTextStyle.regular14Black.copyWith(
+                  //                                 color: Colors.white,fontWeight: FontWeight.w500
+                  //                             ),
+                  //                           ),
+                  //                         ),
+                  //                       ),
+                  //                     ),
+                  //                   ],
+                  //                 ),
+                  //                 for (var payment in model.ownersPayment[index].ownerPayments)...[
+                  //                   TableRow(
+                  //                     children: [
+                  //                       TableCell(
+                  //                         child: Center(
+                  //                           child: Padding(
+                  //                             padding: const EdgeInsets.symmetric(vertical: 5),
+                  //                             child: Text(
+                  //                               DateConverter.isoStringToLocalDateOnly(payment.createdDate.toString()),
+                  //                               style: CustomTextStyle.medium14LightBlack,
+                  //                             ),
+                  //                           ),
+                  //                         ),
+                  //                       ),
+                  //                       TableCell(
+                  //                         child: Center(
+                  //                           child: Padding(
+                  //                             padding: const EdgeInsets.symmetric(vertical: 5),
+                  //                             child: Text(
+                  //                               payment.isPaid.toString()=="true"?"paid".tr():"unpaid".tr(),
+                  //                               style: CustomTextStyle.regular14Black,
+                  //                             ),
+                  //                           ),
+                  //                         ),
+                  //                       ),
+                  //                       TableCell(
+                  //                         child: Center(
+                  //                           child: Padding(
+                  //                             padding: const EdgeInsets.symmetric(vertical: 5),
+                  //                             child: Text(
+                  //                               payment.value.toString() + "EGP".tr(),
+                  //                               style: CustomTextStyle.regular14Black,
+                  //                             ),
+                  //                           ),
+                  //                         ),
+                  //                       ),
+                  //                     ],
+                  //                   ),
+                  //
+                  //                 ]
+                  //
+                  //               ],
+                  //             ),
+                  //             10.height,
+                  //             Column(
+                  //                 children: [
+                  //                   Row(
+                  //                     children: [
+                  //                       Text("totalPaid".tr(),style: CustomTextStyle.regular14Black.copyWith(
+                  //                         fontSize: 12,
+                  //                       ),),
+                  //                       Text(" : ",style: CustomTextStyle.regular14Black.copyWith(fontSize: 12,)),
+                  //                       SizedBox(width: 30,),
+                  //                       Text(model.ownersPayment[index].paidDone.toString() + " " + "EGP".tr(),
+                  //                         style: CustomTextStyle.regular14Black,textAlign: TextAlign.start,),
+                  //                     ],
+                  //                   ),
+                  //
+                  //                   Row(
+                  //                     children: [
+                  //                       Text("totalUnpaid".tr(),style: CustomTextStyle.regular14Black.copyWith(
+                  //                         fontSize: 12,
+                  //                       ),),
+                  //                       Text(" : ",style: CustomTextStyle.regular14Black.copyWith(fontSize: 12,)),
+                  //                       SizedBox(width: 17,),
+                  //                       Text(model.ownersPayment[index].notPaid.toString() + " " + "EGP".tr(),style: CustomTextStyle.regular14Black,
+                  //                         textAlign: TextAlign.start,),
+                  //                     ],
+                  //                   ),
+                  //
+                  //                 ]
+                  //             ),
+                  //           ],
+                  //         ),
+                  //       );
+                  //     },
+                  //     separatorBuilder: (context, index) => 0.height,
+                  //     itemCount: model.ownersPayment.length);
                 }
               },
             ),

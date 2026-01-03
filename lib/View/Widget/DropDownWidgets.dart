@@ -187,7 +187,7 @@ class _ModelSelectionDropdownsState extends State<ModelSelectionDropdowns> {
               ),
             ],
           ),
-        if (widget.isRegister == true) SizedBox(height: 10),
+       SizedBox(height: 10),
         Row(
           children: [
             Expanded(

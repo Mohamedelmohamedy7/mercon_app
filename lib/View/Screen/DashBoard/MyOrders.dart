@@ -9,6 +9,7 @@ import 'package:core_project/helper/ImagesConstant.dart';
 import 'package:core_project/helper/color_resources.dart';
 import 'package:core_project/helper/text_style.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:provider/provider.dart';
@@ -55,21 +56,7 @@ class _MyOrdersState extends State<MyOrders>
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        width: 220,
-                        height: 45,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage(ImagesConstants.backGroundOrder),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        child: Center(
-                            child: Text(
-                          "myOrders".tr(),
-                          style: CustomTextStyle.bold14White,
-                        )),
-                      ),
+                      Expanded(child: TabBarHeader(context, tabController)),
                       InkWell(
                         onTap: () {
                           pushRoute(
@@ -102,7 +89,7 @@ class _MyOrdersState extends State<MyOrders>
                     ],
                   ),
                   20.height,
-                  TabBarHeader(context, tabController),
+
                   20.height,
                   Expanded(
                     child: TabBarView(

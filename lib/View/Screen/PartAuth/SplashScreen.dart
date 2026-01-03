@@ -3,6 +3,7 @@ import 'package:core_project/Provider/LoginProvider.dart';
 import 'package:core_project/Utill/Local_User_Data.dart';
 import 'package:core_project/View/Screen/PartAuth/LoginScreen.dart';
 import 'package:core_project/check_user_type.dart';
+import 'package:core_project/helper/text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:provider/provider.dart';
@@ -147,10 +148,18 @@ class _SplashScreenState extends State<SplashScreen> {
              duration: const Duration(seconds: 2),
              child: Align(
               alignment: Alignment(0, 1.05),
-              child: cachedImage(
-                "assets/images/company.png",
-                width: 120,
-                height: 120,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+
+                  cachedImage(
+                    "assets/images/company.png",
+                    width: 80,
+                    height: 120, color: Colors.white
+                  ),
+                  Text("Powered By",style:  CustomTextStyle.semiBold12Black
+                      .copyWith(fontSize: 11,  color: Colors.white),),
+                ],
               ),
                        ),
            ),

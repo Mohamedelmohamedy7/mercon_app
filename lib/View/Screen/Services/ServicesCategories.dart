@@ -23,6 +23,8 @@ import '../../Widget/comman/CustomAppBar.dart';
 import '../../Widget/comman/comman_Image.dart';
 import "package:core_project/Utill/Local_User_Data.dart";
 
+import '../DashBoard/DashBoardSCreen.dart';
+
 class ServicesCategories extends StatefulWidget {
   const ServicesCategories({Key? key}) : super(key: key);
 
@@ -42,6 +44,7 @@ class _ServicesCategoriesState extends State<ServicesCategories> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+
           appBar: CustomAppBar(
             title: 'clientService'.tr(),
             backgroundImage: AssetImage(ImagesConstants.backgroundImage),
@@ -54,22 +57,22 @@ class _ServicesCategoriesState extends State<ServicesCategories> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    10.height,
-                    Container(
-                      width: 220,
-                      height: 48,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(ImagesConstants.backGroundOrder),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      child: Center(
-                          child: Text(
-                        "selectService".tr(),
-                        style: CustomTextStyle.bold14White,
-                      )),
-                    ),
+                    // 10.height,
+                    // Container(
+                    //   width: 220,
+                    //   height: 48,
+                    //   decoration: BoxDecoration(
+                    //     image: DecorationImage(
+                    //       image: AssetImage(ImagesConstants.backGroundOrder),
+                    //       fit: BoxFit.cover,
+                    //     ),
+                    //   ),
+                    //   child: Center(
+                    //       child: Text(
+                    //     "selectService".tr(),
+                    //     style: CustomTextStyle.bold14White,
+                    //   )),
+                    // ),
                     17.height,
                     Consumer<ServicesProvider>(
                       builder: (context, model, _) {
@@ -161,7 +164,10 @@ class _ServicesCategoriesState extends State<ServicesCategories> {
                           )),
                         ),
                       ),
+                    10.height,
+                    callCenterBottom(context),
                     45.height,
+
                   ],
                 ),
               ),

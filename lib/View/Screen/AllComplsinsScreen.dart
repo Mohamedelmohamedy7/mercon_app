@@ -11,6 +11,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../../Utill/Comman.dart';
 import 'package:flutter/material.dart';
 
+import '../../helper/ImagesConstant.dart';
+import '../Widget/comman/CustomAppBar.dart';
+
 // نموذج البيانات لكل شكوى
 class ComplaintModel {
   final String status;
@@ -199,54 +202,54 @@ class _AllComplaintsScreenState extends State<AllComplaintsScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).primaryColor,
-          elevation: 0,
-          centerTitle: false,
-          automaticallyImplyLeading: false,
-          titleSpacing: 16,
-          title: Row(
-            children: [
-              InkWell(
-                onTap: () {
-                  popRoute(context: context);
-                },
-                child: Icon(
-                  Icons.arrow_back_ios_sharp,
-                  color: Color(0xffCCB6A1),
-                  size: 21,
-                ),
-              ),
-              const SizedBox(width: 14),
-              Expanded(
-                child: FittedBox(
-                  fit: BoxFit.scaleDown,
-                  alignment: Alignment.centerRight,
-                  child: Text(
-                    'Complaints_and_Suggestions'.tr(),
-                    style: TextStyle(
-                      color: Color(0xffCCB6A1),
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
-                    ),
-                    maxLines: 1,
-                  ),
-                ),
-              ),
-              const SizedBox(width: 20),
-              cachedImage(
-                'assets/images/logo_m.png',
-                 height: 28,
-                  fit: BoxFit.contain,
-              ),
-            ],
-          ),
-        ),
-        // CustomAppBar(
-        //   title: 'Complaints_and_Suggestions'.tr(),
-        //   needBack: widget.needBack,
-        //   backgroundImage: AssetImage(ImagesConstants.backgroundImage),
+        // appBar: AppBar(
+        //   backgroundColor: Theme.of(context).primaryColor,
+        //   elevation: 0,
+        //   centerTitle: false,
+        //   automaticallyImplyLeading: false,
+        //   titleSpacing: 16,
+        //   title: Row(
+        //     children: [
+        //       InkWell(
+        //         onTap: () {
+        //           popRoute(context: context);
+        //         },
+        //         child: Icon(
+        //           Icons.arrow_back_ios_sharp,
+        //           color: Color(0xffCCB6A1),
+        //           size: 21,
+        //         ),
+        //       ),
+        //       const SizedBox(width: 14),
+        //       Expanded(
+        //         child: FittedBox(
+        //           fit: BoxFit.scaleDown,
+        //           alignment: Alignment.centerRight,
+        //           child: Text(
+        //             'Complaints_and_Suggestions'.tr(),
+        //             style: TextStyle(
+        //               color: Color(0xffCCB6A1),
+        //               fontSize: 18,
+        //               fontWeight: FontWeight.w500,
+        //             ),
+        //             maxLines: 1,
+        //           ),
+        //         ),
+        //       ),
+        //       const SizedBox(width: 20),
+        //       cachedImage(
+        //         'assets/images/logo_m.png',
+        //          height: 28,
+        //           fit: BoxFit.contain,
+        //       ),
+        //     ],
+        //   ),
         // ),
+        appBar:  CustomAppBar(
+          title: 'Complaints_and_Suggestions'.tr(),
+          needBack: widget.needBack,
+          backgroundImage: AssetImage(ImagesConstants.backgroundImage),
+        ),
         body: SingleChildScrollView(
          // padding: const EdgeInsets.all(16),
           child: Column(

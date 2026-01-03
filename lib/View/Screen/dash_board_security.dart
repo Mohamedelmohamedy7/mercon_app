@@ -20,7 +20,7 @@ class DashBoardSecurity extends StatefulWidget {
 class _DashBoardSecurityState extends State<DashBoardSecurity> {
   int selected = 1;
   List<Widget> screens = [
-    const NotificationScreen(needBack: false),
+    const NotificationScreen(needBack: false, adminScreen: false),
     const SecurityScreen(),
     SizedBox(),
   ];

@@ -77,6 +77,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                       ),
                 const Spacer(),
                 const Spacer(),
+                const Spacer(),
                 Padding(
                   padding: const EdgeInsets.only(top: 10),
                   // child: cachedImage( ImagesConstants.logo, width: 50, height: 50),

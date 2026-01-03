@@ -25,7 +25,10 @@ class SuperAdminDrawer extends StatelessWidget {
         color: Theme.of(context).primaryColor,
         child: ListView(
           children: [
-            Image.asset("assets/images/the_gate.png", width: 200, height: 200),
+            Padding(
+              padding:   EdgeInsetsDirectional.only(start: 60,end: 60,top: 20),
+              child: Image.asset("assets/images/the_gate.png", width: 200, height: 100),
+            ),
             drawerItem(
                 show: true,
                 onTap: () {

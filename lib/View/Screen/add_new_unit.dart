@@ -52,7 +52,10 @@ class _AddNewUnitState extends State<AddNewUnit> {
         child: ListView(
           children: [
             30.height,
-            cachedImage('', width: 130, height: 130),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: cachedImage('', width: 130, height: 50,color: Theme.of(context).primaryColor),
+            ),
             Align(
               alignment: Alignment.center,
               child: Padding(

@@ -1,6 +1,5 @@
 import 'package:core_project/Model/NotificationModel.dart';
 import 'package:core_project/Provider/NotifcationProvider.dart';
-import 'package:core_project/View/Screen/Services/ServicesCategories.dart';
 import 'package:core_project/View/Widget/comman/comman_Image.dart';
 import 'package:core_project/helper/EnumLoading.dart';
 import 'package:core_project/helper/color_resources.dart';
@@ -9,7 +8,6 @@ import 'package:core_project/helper/text_style.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:lottie/lottie.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:provider/provider.dart';
@@ -17,10 +15,12 @@ import '../../../Utill/Comman.dart';
 import '../../../helper/ImagesConstant.dart';
 import '../../Widget/MyOrdersWidget/ListOrders.dart';
 import '../../Widget/comman/CustomAppBar.dart';
+import '../Services/ServicesCategories.dart';
 
 class NotificationScreen extends StatefulWidget {
-  const NotificationScreen({Key? key, required this.needBack}) : super(key: key);
+  const NotificationScreen({Key? key, required this.needBack, required this.adminScreen}) : super(key: key);
   final bool needBack;
+  final bool adminScreen;
 
   @override
   State<NotificationScreen> createState() => _NotificationScreenState();
@@ -32,14 +32,14 @@ class _NotificationScreenState extends State<NotificationScreen> with SingleTick
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 4, vsync: this);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Provider.of<NotificationProvider>(context, listen: false).getMyNotifcation(context);
     });
 
     _tabController.addListener(() {
-      setState(() {}); // هنا كل مرة تختار Tab هيتعمل rebuild
+      setState(() {}); // كل مرة تختار Tab هيتعمل rebuild
     });
   }
 
@@ -60,41 +60,54 @@ class _NotificationScreenState extends State<NotificationScreen> with SingleTick
             needBack: widget.needBack,
             backgroundImage: AssetImage(ImagesConstants.backgroundImage),
             bottom: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(4.0),
               child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 10),
+                margin: const EdgeInsets.symmetric(horizontal: 1),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: Theme.of(context).primaryColor.withOpacity(0.05),
                 ),
-                child: TabBar(
+                child: widget.adminScreen
+                    ? Container()
+                    : TabBar(
                   controller: _tabController,
                   labelPadding: const EdgeInsets.symmetric(horizontal: 0, vertical: 12),
                   indicatorPadding: EdgeInsets.zero,
                   labelColor: Colors.brown,
                   unselectedLabelColor: Colors.brown,
-                  tabs: List.generate(3, (index) {
+                  tabs: List.generate(4, (index) {
                     return _buildTab(
                       index == _tabController.index, // true إذا كانت نشطة
-                      index == 0 ? 'news'.tr() : index == 1 ? 'finance'.tr() : 'events'.tr(),
-                      showDivider: index != 2,
+                      index == 0 ? 'urgent_notify'.tr() :
+                        index == 1 ? 'news'.tr() :
+                        index == 2 ? 'finance'.tr() :  'events'.tr() ,
+                      showDivider: index != 3,
                     );
                   }),
                 ),
               ),
             ),
           ),
-          body: TabBarView(
+          body: widget.adminScreen
+              ? buildNotificationList(Provider.of<NotificationProvider>(context).myNotification)
+              : TabBarView(
             controller: _tabController,
             children: [
-              buildNotificationList(Provider.of<NotificationProvider>(context).myNotification),
+              buildNotificationList(
+                Provider.of<NotificationProvider>(context).myNotification,
+                add: true, // نضيف dummyConstructionStageNotifications هنا
+              ),
+              buildNotificationList(
+                Provider.of<NotificationProvider>(context).myNotification,
+                add: true, // نضيف dummyConstructionStageNotifications هنا
+              ),
               buildNotificationList(dummyInstallmentsNotifications),
               Stack(
                 children: [
                   buildNotificationList(dummyOccasionsNotifications),
                   Opacity(
                       opacity: 0.8,
-                      child: Lottie.asset("assets/images/festival.json",repeat: false ))
+                      child: Lottie.asset("assets/images/festival.json", repeat: false))
                 ],
               ),
             ],
@@ -103,8 +116,15 @@ class _NotificationScreenState extends State<NotificationScreen> with SingleTick
       ),
     );
   }
-  /// 👈 حط هذه الدالة داخل نفس الكلاس
-  Widget buildNotificationList(List<NotificationModel> myNotification) {
+
+  /// 👈 دالة إنشاء ليستة الإشعارات
+  Widget buildNotificationList(List<NotificationModel> myNotification, {bool? add}) {
+    // إنشاء نسخة لتجنب تعديل الـ provider مباشرة
+    List<NotificationModel> displayList = [...myNotification];
+    if (add == true) {
+      displayList.addAll(dummyConstructionStageNotifications.reversed.toList());
+    }
+
     return Consumer<NotificationProvider>(
       builder: (context, model, _) {
         if (model.status == LoadingStatus.LOADING) {
@@ -122,17 +142,13 @@ class _NotificationScreenState extends State<NotificationScreen> with SingleTick
             itemCount: 10,
           );
         } else {
-          return model.myNotification.isEmpty
+          return displayList.isEmpty
               ? Center(child: emptyList())
               : ListView.separated(
             padding: const EdgeInsets.only(top: 20),
-            itemBuilder: (context, index) {
-              return containerNotification(
-                  myNotification[index], context);
-            },
-            separatorBuilder: (context, index) =>
-            const SizedBox(height: 10),
-            itemCount: model.myNotification.length,
+            itemBuilder: (context, index) => containerNotification(displayList[index], context),
+            separatorBuilder: (context, index) => const SizedBox(height: 10),
+            itemCount: displayList.length,
           );
         }
       },
@@ -144,7 +160,6 @@ class _NotificationScreenState extends State<NotificationScreen> with SingleTick
       children: [
         Expanded(
           child: Container(
-
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
               border: Border.all(
@@ -153,7 +168,7 @@ class _NotificationScreenState extends State<NotificationScreen> with SingleTick
               ),
               color: isActive ? Colors.brown.withOpacity(0.1) : Colors.transparent,
             ),
-            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+            padding: const EdgeInsets.symmetric(vertical: 8, horizontal:2),
             child: Center(
               child: Text(
                 text,
@@ -179,8 +194,7 @@ class _NotificationScreenState extends State<NotificationScreen> with SingleTick
   }
 }
 
-
-// الدالة containerNotification تبقى زي ما هي (بدون تغيير)
+/// الدالة containerNotification تبقى زي ما هي
 Container containerNotification(NotificationModel myNotification, context) {
   return Container(
     margin: const EdgeInsets.symmetric(horizontal: 10),
@@ -199,7 +213,7 @@ Container containerNotification(NotificationModel myNotification, context) {
       padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 15),
       child: Row(
         children: [
-          cachedImage(myNotification.url, width: 60, height: 80, color: Theme.of(context).primaryColor),
+          cachedImage(myNotification.url, width: 50, height: 60, color: Theme.of(context).primaryColor),
           10.width,
           Expanded(
             child: Column(
@@ -225,25 +239,6 @@ Container containerNotification(NotificationModel myNotification, context) {
             ),
           ),
         ],
-      ),
-    ),
-  );
-}Widget _buildTab(String text, {required bool isActive}) {
-  return Container(
-    padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 8),
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(8),
-      border: Border.all(
-        color: isActive ? Colors.brown : Colors.brown.withOpacity(0.3),
-        width: isActive ? 2 : 1,
-      ),
-      color: isActive ? Colors.brown.withOpacity(0.1) : Colors.transparent,
-    ),
-    child: Text(
-      text,
-      style: TextStyle(
-        color: isActive ? Colors.brown : Colors.grey,
-        fontWeight: FontWeight.w600,
       ),
     ),
   );

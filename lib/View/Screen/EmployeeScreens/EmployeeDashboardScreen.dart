@@ -153,11 +153,14 @@ Widget floatingLogo({required BuildContext context}) {
     width: 120,
     height: 70,
     child: Center(
-      child: cachedImage(
-        globalAccountData.getCompoundLogo().toString(),
-        width: 100,
-        height: 50,
-        fit: BoxFit.contain,
+      child: Padding(
+        padding: const EdgeInsets.all(18.0),
+        child: cachedImage(
+          globalAccountData.getCompoundLogo().toString(),
+          width: 120,
+          height: 50,
+          fit: BoxFit.contain,
+        ),
       ),
     ),
     //     Image.asset(

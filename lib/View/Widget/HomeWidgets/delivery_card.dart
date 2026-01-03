@@ -42,7 +42,8 @@ class DeliveryCard extends StatelessWidget {
                         fontSize: 15,
                         fontWeight: FontWeight.bold),
                     textAlign: TextAlign.center,
-                  ), Container(
+                  ),
+                  Container(
                     width:MediaQuery.of(context).size.width*0.6,
                     alignment: AlignmentDirectional.topStart,
                     child: Text(
@@ -56,7 +57,7 @@ class DeliveryCard extends StatelessWidget {
                   ),
                 ],
               ),
-              Spacer(),
+
 
               SizedBox(width: 10,)
             ],

@@ -11,7 +11,7 @@ class NotificationProvider extends ChangeNotifier{
   List<NotificationModel> myNotification = [];
   Future<void> getMyNotifcation(context) async {
     myNotification.clear();
-    startLoader();
+     startLoader();
     final res = await getFunctionRestApi(context, urlEndPoint: "$GET_ALL_NOTIFICATION${globalAccountData.getId().toString()}");
     for (NotificationModel unitModelItem in parseNotificationModel(res)) {
       unitModelItem.url = "assets/images/newsIcon.png";

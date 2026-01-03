@@ -27,6 +27,7 @@ class DeliveryProvider extends ChangeNotifier {
     for (DeliveryData delivery in deliveryDataFromJson(res)) {
       deliveryData.add(delivery);
     }
+    deliveryData = deliveryData.reversed.toList();
     S_finishLoader();
     return;
   }

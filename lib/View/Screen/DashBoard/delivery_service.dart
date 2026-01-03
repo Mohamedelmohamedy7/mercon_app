@@ -9,6 +9,7 @@ import 'package:core_project/helper/color_resources.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:nb_utils/nb_utils.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
 import 'package:url_launcher/url_launcher.dart';
@@ -22,6 +23,7 @@ import '../../../helper/ImagesConstant.dart';
 import '../../../helper/text_style.dart';
 import '../../Widget/MyOrdersWidget/ListOrders.dart';
 import '../../Widget/comman/CustomAppBar.dart';
+import 'DashBoardSCreen.dart';
 
 class DeliveryService extends StatefulWidget {
   DeliveryService({Key? key}) : super(key: key);
@@ -55,6 +57,7 @@ class _DeliveryServiceState extends State<DeliveryService> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        bottomNavigationBar: callCenterBottom(context),
         appBar: CustomAppBar(
           title: 'deliveryServices'.tr(),
           needBack: true,
@@ -78,116 +81,148 @@ class _DeliveryServiceState extends State<DeliveryService> {
                         ListView.separated(
                             physics: NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
-                            itemBuilder: (context, index) => InkWell(
+                            itemBuilder: (context, index) {
+                              final item = model.deliveryData[index];
+
+                              return TweenAnimationBuilder<double>(
+                                tween: Tween(begin: 0.1, end: 1),
+                                duration: const Duration(milliseconds: 300),
+                                curve: Curves.easeOut,
+                                builder: (context, scale, child) {
+                                  return Transform.scale(
+                                    scale: scale,
+                                    child: child,
+                                  );
+                                },
+                                child: InkWell(
+                                  borderRadius: BorderRadius.circular(20),
                                   onTap: () {
                                     pushRoute(
-                                        context: context,
-                                        route: DeliveryMenusScreen(
-                                          deliveryData:
-                                              model.deliveryData[index],
-                                        ));
+                                      context: context,
+                                      route: DeliveryMenusScreen(deliveryData: item),
+                                    );
                                   },
                                   child: Container(
-                                    //   height: 85,
-                                    margin: const EdgeInsets.all(10),
-                                    padding: EdgeInsets.symmetric(vertical: 10),
+                                    margin: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                                    padding: const EdgeInsets.all(14),
                                     decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      border: Border.all(
-                                          color: Colors.black.withOpacity(0.5),
-                                          width: 2),
-                                      borderRadius: BorderRadius.circular(10),
+                                      borderRadius: BorderRadius.circular(20),
+                                      gradient:  LinearGradient(
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
+                                        colors: [
+                                          Colors.white,
+                                          Theme.of(context).primaryColor.withOpacity(0.03),
+                                        ],
+                                      ),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.black.withOpacity(0.06),
+                                          blurRadius: 14,
+                                          offset: Offset(0, 6),
+                                        ),
+                                      ],
                                     ),
                                     child: Row(
                                       children: [
-                                        Lottie.asset(
-                                            'assets/images/deliverymenu.json',
-                                            height: 60),
-                                        Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Text(
-                                                  "${model.deliveryData[index].restaurantName}",
-                                                  style: CustomTextStyle
-                                                      .bold14black
-                                                      .copyWith(
-                                                    fontSize: 16,
-                                                    color: Theme.of(context)
-                                                        .primaryColor,
-                                                  ),
-                                                ),
+                                        /// ICON
+                                        Container(
+                                          height: 56,
+                                          width: 56,
+                                          decoration: BoxDecoration(
+                                            gradient: LinearGradient(
+                                              colors: [
+                                                Theme.of(context).primaryColor,
+                                                Theme.of(context).primaryColor.withOpacity(0.7),
                                               ],
                                             ),
-                                            SizedBox(
-                                              height: 5,
-                                            ),
-                                            Text(
-                                              'deliveryNumber'.tr(),
-                                              style: CustomTextStyle
-                                                  .regular14Black
-                                                  .copyWith(
-                                                fontSize: 13,
-                                                color: Colors.black,
+                                            shape: BoxShape.circle,
+                                          ),
+                                          child: Icon(
+                                            Icons.delivery_dining_rounded,
+                                            color: Colors.white,
+                                            size: 28,
+                                          ),
+                                        ),
+
+                                        14.width,
+
+                                        /// INFO
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                item.restaurantName ?? '',
+                                                maxLines: 1,
+                                                overflow: TextOverflow.ellipsis,
+                                                style: CustomTextStyle.bold14black.copyWith(
+                                                  fontSize: 17,
+                                                ),
                                               ),
-                                            ),
-                                            SizedBox(
-                                              height: 5,
-                                            ),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Text(
-                                                  "${model.deliveryData[index].restaurantNumber}",
-                                                  style: CustomTextStyle
-                                                      .regular14Black
-                                                      .copyWith(
-                                                    fontSize: 13,
-                                                    color: Colors.black,
-                                                  ),
+                                              8.height,
+
+                                              Container(
+                                                padding:
+                                                const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                                                decoration: BoxDecoration(
+                                                  color: Colors.grey.shade100,
+                                                  borderRadius: BorderRadius.circular(20),
                                                 ),
-                                                SizedBox(
-                                                  width: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      0.3,
+                                                child: Row(
+                                                  mainAxisSize: MainAxisSize.min,
+                                                  children: [
+                                                    Icon(Icons.phone, size: 14, color: Colors.grey),
+                                                    6.width,
+                                                    Text(
+                                                      item.restaurantNumber ?? '',
+                                                      style: CustomTextStyle.regular14Black.copyWith(
+                                                        fontSize: 12,
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(8.0),
-                                                  child: GestureDetector(
-                                                      onTap: () async {
-                                                        if (Platform
-                                                            .isAndroid) {
-                                                          launchUrl(Uri.parse(
-                                                              'tel:${model.deliveryData[index].restaurantNumber}'));
-                                                        } else {
-                                                          await UssdPhoneCallSms()
-                                                              .phoneCall(
-                                                                  phoneNumber:
-                                                                      '${model.deliveryData[index].restaurantNumber}');
-                                                        }
-                                                      },
-                                                      child: Icon(Icons.call,
-                                                          size: 30)),
-                                                )
-                                              ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+
+                                        /// CALL BUTTON
+                                        InkWell(
+                                          onTap: () async {
+                                            final phone = item.restaurantNumber ?? '';
+                                            if (Platform.isAndroid) {
+                                              launchUrl(Uri.parse('tel:$phone'));
+                                            } else {
+                                              await UssdPhoneCallSms().phoneCall(phoneNumber: phone);
+                                            }
+                                          },
+                                          child: Container(
+                                            height: 44,
+                                            width: 44,
+                                            decoration: BoxDecoration(
+                                              gradient: LinearGradient(
+                                                colors: [
+                                                  Theme.of(context).primaryColor,
+                                                  Theme.of(context).primaryColor.withOpacity(0.7),
+                                                ],
+                                              ),
+                                              borderRadius: BorderRadius.circular(14),
                                             ),
-                                          ],
+                                            child: Icon(
+                                              Icons.call_rounded,
+                                              color: Colors.white,
+                                            ),
+                                          ),
                                         ),
                                       ],
                                     ),
                                   ),
                                 ),
+                              );
+                            },
+
+
                             separatorBuilder: (context, index) => SizedBox(),
                             itemCount: model.deliveryData.length),
                         // ListView.separated(

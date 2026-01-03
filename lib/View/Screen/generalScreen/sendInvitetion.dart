@@ -262,29 +262,29 @@ class _sendInvitetionState extends State<sendInvitetion> {
                 child: ListView(
                   controller: _scrollController,
                   children: [
-                    5.height,
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Container(
-                          width: 280,
-                          height: 55,
-                          alignment: AlignmentDirectional.topStart,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image:
-                                  AssetImage(ImagesConstants.backGroundOrder),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          child: Center(
-                              child: Text(
-                            "sendInventionData".tr(),
-                            style: CustomTextStyle.bold14White,
-                          )),
-                        ),
-                      ],
-                    ),
+                    // 5.height,
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.start,
+                    //   children: [
+                    //     Container(
+                    //       width: 280,
+                    //       height: 55,
+                    //       alignment: AlignmentDirectional.topStart,
+                    //       decoration: BoxDecoration(
+                    //         image: DecorationImage(
+                    //           image:
+                    //               AssetImage(ImagesConstants.backGroundOrder),
+                    //           fit: BoxFit.cover,
+                    //         ),
+                    //       ),
+                    //       child: Center(
+                    //           child: Text(
+                    //         "sendInventionData".tr(),
+                    //         style: CustomTextStyle.bold14White,
+                    //       )),
+                    //     ),
+                    //   ],
+                    // ),
                     5.height,
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,

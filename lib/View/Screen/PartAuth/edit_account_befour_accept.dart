@@ -285,23 +285,23 @@ class _EditAccountbefourAcceptState extends State<EditAccountbefourAccept> {
                               child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    17.height,
-                                    Container(
-                                      width: 220,
-                                      height: 48,
-                                      decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                          image: AssetImage(
-                                              ImagesConstants.backGroundOrder),
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                      child: Center(
-                                          child: Text(
-                                        "EditAccount".tr(),
-                                        style: CustomTextStyle.bold14White,
-                                      )),
-                                    ),
+                                    // 17.height,
+                                    // Container(
+                                    //   width: 220,
+                                    //   height: 48,
+                                    //   decoration: BoxDecoration(
+                                    //     image: DecorationImage(
+                                    //       image: AssetImage(
+                                    //           ImagesConstants.backGroundOrder),
+                                    //       fit: BoxFit.cover,
+                                    //     ),
+                                    //   ),
+                                    //   child: Center(
+                                    //       child: Text(
+                                    //     "EditAccount".tr(),
+                                    //     style: CustomTextStyle.bold14White,
+                                    //   )),
+                                    // ),
                                     17.height,
                                     // HeaderImageSelected(context),
                                     // 17.height,

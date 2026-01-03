@@ -127,52 +127,57 @@ class _ComplaintFormScreenState extends State<ComplaintFormScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-
-          backgroundColor: Theme.of(context).primaryColor,
-          elevation: 0,
-          centerTitle: false,
-          automaticallyImplyLeading: false,
-          titleSpacing: 16,
-          title: Row(
-            children: [
-              InkWell(
-                onTap: () {
-                  popRoute(context: context);
-                },
-                child: Icon(
-                  Icons.arrow_back_ios_sharp,
-                  color: Color(0xffCCB6A1),
-                  size: 25,
-                ),
-              ),
-              const SizedBox(width: 14),
-              Expanded(
-                child: FittedBox(
-                  fit: BoxFit.scaleDown,
-                  alignment: Alignment.centerRight,
-                  child: Text(
-                    'Complaints_and_Suggestions'.tr(),
-                    style: TextStyle(
-                      color: Color(0xffCCB6A1),
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                    ),
-                    maxLines: 1,
-                  ),
-                ),
-              ),
-
-              const SizedBox(width: 20),
-              Image.asset(
-                'assets/images/logo_m.png',
-                 height: 28,
-                  fit: BoxFit.contain,
-              ),
-            ],
-          ),
-
+        appBar: CustomAppBar(
+          title: 'Complaints_and_Suggestions'.tr(),
+          needBack: true,
+          backgroundImage: AssetImage(ImagesConstants.backgroundImage),
         ),
+        // appBar: AppBar(
+        //
+        //   backgroundColor: Theme.of(context).primaryColor,
+        //   elevation: 0,
+        //   centerTitle: false,
+        //   automaticallyImplyLeading: false,
+        //   titleSpacing: 16,
+        //   title: Row(
+        //     children: [
+        //       InkWell(
+        //         onTap: () {
+        //           popRoute(context: context);
+        //         },
+        //         child: Icon(
+        //           Icons.arrow_back_ios_sharp,
+        //           color: Color(0xffCCB6A1),
+        //           size: 25,
+        //         ),
+        //       ),
+        //       const SizedBox(width: 14),
+        //       Expanded(
+        //         child: FittedBox(
+        //           fit: BoxFit.scaleDown,
+        //           alignment: Alignment.centerRight,
+        //           child: Text(
+        //             'Complaints_and_Suggestions'.tr(),
+        //             style: TextStyle(
+        //               color: Color(0xffCCB6A1),
+        //               fontSize: 16,
+        //               fontWeight: FontWeight.w500,
+        //             ),
+        //             maxLines: 1,
+        //           ),
+        //         ),
+        //       ),
+        //
+        //       const SizedBox(width: 20),
+        //       Image.asset(
+        //         'assets/images/logo_m.png',
+        //          height: 28,
+        //           fit: BoxFit.contain,
+        //       ),
+        //     ],
+        //   ),
+        //
+        // ),
         // CustomAppBar(
         //   title: 'Complaints_and_Suggestions'.tr(),
         //   needBack: widget.needBack,

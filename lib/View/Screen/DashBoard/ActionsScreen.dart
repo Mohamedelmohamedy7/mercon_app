@@ -33,6 +33,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../Widget/comman/CustomAppBar.dart';
 import '../PartAuth/edit_account.dart';
+import '../ResaleAndOwnershipTransferScreen.dart';
 import '../SendMessageToSecurity.dart';
 import '../complaintsand_suggestions.dart';
 import '../generalScreen/ChangePassword.dart';
@@ -176,6 +177,15 @@ class _ActionsScreenState extends State<ActionsScreen>
                   textFieldSvg("message.svg"),
                       () => pushRoute(
                       context: context, route: AllComplaintsScreen(needBack: true,)// ComplaintFormScreen(needBack: true,),
+              )),
+              20.height,
+              containerNotification(
+                  context,
+                  "ownership_transfer",
+                  Image.asset("assets/images/ownership_transfer.png",width: 25,height: 25,
+                    color: Theme.of(context).primaryColor,),
+                      () => pushRoute(
+                      context: context, route: ResaleAndOwnershipTransferScreen(needBack: true,)// ComplaintFormScreen(needBack: true,),
               )),
               20.height,
               containerNotification(

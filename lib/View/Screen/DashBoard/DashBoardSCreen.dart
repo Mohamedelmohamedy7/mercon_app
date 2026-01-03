@@ -3,6 +3,7 @@ import 'package:core_project/Provider/LoginProvider.dart';
 import 'package:core_project/Utill/Local_User_Data.dart';
 import 'package:core_project/View/Screen/dash_board_security.dart';
 import 'package:core_project/View/Widget/comman/comman_Image.dart';
+import 'package:core_project/generated/assets.dart';
 import 'package:core_project/helper/text_style.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -10,11 +11,37 @@ import 'package:nb_utils/nb_utils.dart';
 import 'package:provider/provider.dart';
 import 'package:stylish_bottom_bar/stylish_bottom_bar.dart';
 import 'package:upgrader/upgrader.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'HomeScreen.dart';
 import 'QrCode/AskScanQrCode.dart';
 import 'ActionsScreen.dart';
 import 'MyOrders.dart';
 import 'NotificationScreen.dart';
+
+Widget callCenterBottom(context) => InkWell(
+  onTap: (){
+     launchUrl(Uri.parse("tel:${globalAccountData.getPhoneNumber()}"));
+  },
+  child: Container(
+    padding: const EdgeInsets.symmetric(horizontal: 10),
+     margin: const EdgeInsets.symmetric(horizontal: 10,vertical: 5),
+    height: 50,
+    width: double.infinity,
+    decoration: BoxDecoration(
+      color: Theme.of(context).primaryColor,
+      borderRadius: BorderRadius.circular(15),
+    ),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text("connectClientSupport".tr(),style:
+        CustomTextStyle.semiBold12Black.copyWith(fontSize: 14,color: Colors.white),),
+       10.width,
+        Icon(Icons.phone, color: Colors.white, size: 25),
+      ],
+    ),
+  ),
+);
 
 class DashBoardScreen extends StatefulWidget {
   const DashBoardScreen({Key? key,this.selected=2}) : super(key: key);
@@ -39,7 +66,7 @@ class _DashBoardScreenState extends State<DashBoardScreen>
 
   List<Widget> screens = [
     const AskScanQrCode(),
-    const NotificationScreen(needBack: false),
+    const NotificationScreen(needBack: false,adminScreen: false),
     const HomeScreen(),
     const MyOrders(),
     const ActionsScreen(),

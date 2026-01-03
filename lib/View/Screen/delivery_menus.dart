@@ -69,17 +69,65 @@ class _DeliveryMenusScreenState extends State<DeliveryMenusScreen> {
                     else    ListView.separated(
                             physics: NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
-                            itemBuilder: (context, index) => WidgetZoom(
-                                  heroAnimationTag: index.toString(),
-                                  zoomWidget: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(15),
-                                      child: cachedImage(
-                                          "${model.deliveryMenuData[index].menuIamge}"),
+                            itemBuilder: (context, index) {
+                              final item = model.deliveryMenuData[index];
+
+                              return WidgetZoom(
+                                heroAnimationTag: index.toString(),
+
+                                zoomWidget: Container(
+                                  alignment: Alignment.center,
+                                  margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.black.withOpacity(0.08),
+                                        blurRadius: 12,
+                                        offset: const Offset(0, 6),
+                                      ),
+                                    ],
+                                  ),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(20),
+                                    child: Stack(
+                                      children: [
+                                        /// IMAGE
+                                        AspectRatio(
+                                          aspectRatio: 6 / 4,
+                                          child: cachedImage(
+                                            item.menuIamge ?? '',
+                                            fit: BoxFit.contain,
+                                          ),
+                                        ),
+
+                                        /// GRADIENT OVERLAY
+                                        Positioned(
+                                          bottom: 0,
+                                          left: 0,
+                                          right: 0,
+                                          child: Container(
+                                            height: 70,
+                                            decoration: BoxDecoration(
+                                              gradient: LinearGradient(
+                                                begin: Alignment.bottomCenter,
+                                                end: Alignment.topCenter,
+                                                colors: [
+                                                  Colors.black.withOpacity(0.65),
+                                                  Colors.transparent,
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+
+                                      ],
                                     ),
                                   ),
                                 ),
+                              );
+                            },
+
                             separatorBuilder: (context, index) => SizedBox(),
                             itemCount: model.deliveryMenuData.length),
                       ],

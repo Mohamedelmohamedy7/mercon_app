@@ -96,22 +96,22 @@ class _ServiceRequestState extends State<ServiceRequest> {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      10.height,
-                      Container(
-                        width: 220,
-                        height: 48,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage(ImagesConstants.backGroundOrder),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        child: Center(
-                            child: Text(
-                          "serviceDetails".tr(),
-                          style: CustomTextStyle.bold14White,
-                        )),
-                      ),
+                      // 10.height,
+                      // Container(
+                      //   width: 220,
+                      //   height: 48,
+                      //   decoration: BoxDecoration(
+                      //     image: DecorationImage(
+                      //       image: AssetImage(ImagesConstants.backGroundOrder),
+                      //       fit: BoxFit.cover,
+                      //     ),
+                      //   ),
+                      //   child: Center(
+                      //       child: Text(
+                      //     "serviceDetails".tr(),
+                      //     style: CustomTextStyle.bold14White,
+                      //   )),
+                      // ),
                       17.height,
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 5),
