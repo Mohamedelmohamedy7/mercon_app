@@ -1,6 +1,7 @@
 // ignore: must_be_immutable
 import 'package:core_project/Utill/AnimationWidget.dart';
 import 'package:core_project/Utill/Comman.dart';
+import 'package:core_project/View/Screen/DropDownWidgets.dart';
 import 'package:core_project/View/Screen/PartAuth/CheckCompoundCodeScreen.dart';
 import 'package:core_project/View/Widget/comman/comman_Image.dart';
 
@@ -442,7 +443,7 @@ class LoginScreen extends StatelessWidget {
                                 child: Text(
                                   "Register Now".tr(),
                                   style: CustomTextStyle.regular14Gray.copyWith(
-                                    color: Colors.black,
+                                    color: newColor,
                                     fontSize: 12,
                                   ),
                                   textAlign: TextAlign.center,

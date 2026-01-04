@@ -260,8 +260,10 @@ class _HomeScreenState extends State<HomeScreen> {
 List<Map<String, dynamic>> data = [
   {
     "title": "Riverton New Cairo",
-    "imageUrl": "https://newcairo-developments.com/wp-content/uploads/2025/08/Riverton-New-Cairo-Compound.jpg",
-    "desc": "A luxurious residential project in the heart of Fifth Settlement, covering approximately 25 acres with a variety of housing units, full services, and extensive green spaces.",
+    "imageUrl":
+    "https://newcairo-developments.com/wp-content/uploads/2025/08/Riverton-New-Cairo-Compound.jpg",
+    "desc":
+    "A luxurious residential project in the heart of Fifth Settlement, covering approximately 25 acres with a variety of housing units, full services, and extensive green spaces.",
     "details": {
       "location": "Fifth Settlement – New Cairo",
       "type": "Residential / Investment",
@@ -270,12 +272,23 @@ List<Map<String, dynamic>> data = [
       "partners": ["Al Tamayoz Kuwait", "Giwan Hotels"],
       "amenities": ["Restaurants", "Spa", "Swimming Pool", "Gym"]
     },
-    "video_id":"2uJ1_yurwOk"
+    "video_id": "2uJ1_yurwOk",
+    "images": [
+      "http://31.220.84.50:777/uploads/8bae80c8-5bbd-4017-b17e-b98fdade768b.png",
+      "https://mercondevelopments.com/wp-content/uploads/2025/10/110-scaled.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/10/126-scaled.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/10/122-scaled.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/10/119-scaled.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/10/120-scaled.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/10/11.webp",
+    ],
   },
   {
     "title": "Nurai Golden Square",
-    "imageUrl": "https://newcairo-developments.com/wp-content/uploads/2024/05/Nurai-Fifth-Settlement-Compound.jpg",
-    "desc": "A fully integrated residential and commercial community in the Golden Square area of New Cairo, spanning around 70,000 m², combining residential and commercial services.",
+    "imageUrl":
+    "https://newcairo-developments.com/wp-content/uploads/2024/05/Nurai-Fifth-Settlement-Compound.jpg",
+    "desc":
+    "A fully integrated residential and commercial community in the Golden Square area of New Cairo, spanning around 70,000 m², combining residential and commercial services.",
     "details": {
       "location": "Golden Square – Fifth Settlement",
       "type": "Residential + Commercial",
@@ -283,47 +296,90 @@ List<Map<String, dynamic>> data = [
       "units": "Over 400 units",
       "investment": "Approx. 14 billion EGP"
     },
-    "video_id":"O7djMUUXKxw"
+    "video_id": "O7djMUUXKxw",
+    "images": [
+      "https://mercondevelopments.com/wp-content/uploads/2025/06/nurai_0005_Screenshot-2025-06-01-at-3.51.03%E2%80%AFAM.jpg.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/06/nurai_0002_Screenshot-2025-06-01-at-3.50.25%E2%80%AFAM.jpg.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/06/Nurai_0004_Screenshot-2025-06-01-at-3.34.22%E2%80%AFAM.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/06/nurai_0001_Screenshot-2025-06-01-at-3.50.36%E2%80%AFAM.jpg.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/06/nurai_0001_Screenshot-2025-06-01-at-3.50.36%E2%80%AFAM.jpg.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/06/nurai_0004_Screenshot-2025-06-01-at-8.34.39%E2%80%AFPM.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/06/nurai_0000_Generative-Fill.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/06/nurai_0005_Screenshot-2025-06-01-at-8.35.16%E2%80%AFPM.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/06/nurai_0003_Screenshot-2025-06-01-at-8.35.28%E2%80%AFPM.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/06/nurai_0000_Screenshot-2025-06-01-at-3.50.45%E2%80%AFAM.jpg.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/06/nurai_0004_Screenshot-2025-06-01-at-3.50.07%E2%80%AFAM.jpg.webp"
+    ],
   },
   {
     "title": "VX Golden Square",
-    "imageUrl": "https://blureg.com/wp-content/uploads/2025/12/0-04-scaled-1.webp",
-    "desc": "A modern residential project in Golden Square, offering an innovative living experience with a mix of modern amenities and open spaces.",
+    "imageUrl":
+    "https://blureg.com/wp-content/uploads/2025/12/0-04-scaled-1.webp",
+    "desc":
+    "A modern residential project in Golden Square, offering an innovative living experience with a mix of modern amenities and open spaces.",
     "details": {
       "location": "Golden Square – New Cairo",
       "type": "Residential",
       "features": ["Jogging Tracks", "Entertainment Areas", "Green Spaces"]
     },
-    "video_id":"QDM8rMw1fH8"
+    "video_id": "QDM8rMw1fH8",
+    "images": [
+
+      "https://mercondevelopments.com/wp-content/uploads/2025/12/0-01-1-scaled-e1765107687559.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/12/0-04-scaled.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/12/0-02-scaled.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/06/Nurai_0000_Screenshot-2025-06-01-at-3.33.45%E2%80%AFAM.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/06/Nurai_0003_Screenshot-2025-06-01-at-3.34.09%E2%80%AFAM.webp",
+    ],
   },
   {
     "title": "VX N90",
-    "imageUrl": "https://mercondevelopments.com/wp-content/uploads/2025/12/0-01-scaled-e1764683407441-1-e1766331327461.webp",
-    "desc": "A commercial and business project providing flexible spaces designed specifically for startups and offices, located strategically in Fifth Settlement.",
+    "imageUrl":
+    "https://mercondevelopments.com/wp-content/uploads/2025/12/0-01-scaled-e1764683407441-1-e1766331327461.webp",
+    "desc":
+    "A commercial and business project providing flexible spaces designed specifically for startups and offices, located strategically in Fifth Settlement.",
     "details": {
       "location": "Fifth Settlement – New Cairo",
       "type": "Commercial / Administrative",
       "features": ["Office Spaces", "Shops", "Business Support Services"]
     },
-    "video_id":"tq8ziC2WxoM"
+    "video_id": "tq8ziC2WxoM",
+    "images":[
+      "https://mercondevelopments.com/wp-content/uploads/2025/12/New-shot-8.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/12/Shot-33-ps-jpeg.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/12/Shot-16.2.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/12/Shot-14.2.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/12/Night-new-5.webp",
+
+    ],
   },
   {
     "title": "Pavo Tower",
-    "imageUrl": "https://ipgegypt.com/storage/613/0f9/37a/6130f937ae233322716847.jpg",
-    "desc": "A commercial and administrative tower in the New Administrative Capital offering high-end units with modern design in the Central Business District (CBD).",
+    "imageUrl":
+    "https://ipgegypt.com/storage/613/0f9/37a/6130f937ae233322716847.jpg",
+    "desc":
+    "A commercial and administrative tower in the New Administrative Capital offering high-end units with modern design in the Central Business District (CBD).",
     "details": {
       "location": "New Administrative Capital – CBD",
       "type": "Commercial / Administrative",
       "amenities": ["Parking", "24/7 Security", "Office Support Services"]
     },
-    "video_id":"ui10jaabvoc"
+    "video_id": "ui10jaabvoc",
+    "images": [
+      "https://mercondevelopments.com/wp-content/uploads/2025/05/h11.jpg.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/05/h11543534.jpg.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/05/h112212.jpg.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/05/h1122-e1748735265427.jpg.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/05/h11432.jpg.webp",
+    ],
   }
 ];
 
 List<Map<String, dynamic>> dataArabic = [
   {
     "title": "ريڤرتون – القاهرة الجديدة",
-    "imageUrl": "https://newcairo-developments.com/wp-content/uploads/2025/08/Riverton-New-Cairo-Compound.jpg",
+    "imageUrl":
+    "https://newcairo-developments.com/wp-content/uploads/2025/08/Riverton-New-Cairo-Compound.jpg",
     "desc":
     "مشروع سكني فاخر في قلب التجمع الخامس، يمتد على مساحة تقارب 25 فدان، ويضم وحدات سكنية متنوعة مع خدمات متكاملة ومساحات خضراء واسعة.",
     "details": {
@@ -334,7 +390,16 @@ List<Map<String, dynamic>> dataArabic = [
       "partners": ["التميز الكويت", "فنادق جيوان"],
       "amenities": ["مطاعم", "سبا", "حمامات سباحة", "جيم"]
     },
-    "video_id": "2uJ1_yurwOk"
+    "video_id": "2uJ1_yurwOk",
+    "images": [
+      "http://31.220.84.50:777/uploads/8bae80c8-5bbd-4017-b17e-b98fdade768b.png",
+      "https://mercondevelopments.com/wp-content/uploads/2025/10/110-scaled.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/10/126-scaled.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/10/122-scaled.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/10/119-scaled.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/10/120-scaled.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/10/11.webp",
+    ],
   },
   {
     "title": "نوراي جولدن سكوير",
@@ -349,11 +414,25 @@ List<Map<String, dynamic>> dataArabic = [
       "units": "أكثر من 400 وحدة",
       "investment": "حوالي 14 مليار جنيه مصري"
     },
-    "video_id": "O7djMUUXKxw"
+    "video_id": "O7djMUUXKxw",
+    "images": [
+      "https://mercondevelopments.com/wp-content/uploads/2025/06/nurai_0005_Screenshot-2025-06-01-at-3.51.03%E2%80%AFAM.jpg.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/06/nurai_0002_Screenshot-2025-06-01-at-3.50.25%E2%80%AFAM.jpg.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/06/Nurai_0004_Screenshot-2025-06-01-at-3.34.22%E2%80%AFAM.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/06/nurai_0001_Screenshot-2025-06-01-at-3.50.36%E2%80%AFAM.jpg.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/06/nurai_0001_Screenshot-2025-06-01-at-3.50.36%E2%80%AFAM.jpg.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/06/nurai_0004_Screenshot-2025-06-01-at-8.34.39%E2%80%AFPM.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/06/nurai_0000_Generative-Fill.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/06/nurai_0005_Screenshot-2025-06-01-at-8.35.16%E2%80%AFPM.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/06/nurai_0003_Screenshot-2025-06-01-at-8.35.28%E2%80%AFPM.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/06/nurai_0000_Screenshot-2025-06-01-at-3.50.45%E2%80%AFAM.jpg.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/06/nurai_0004_Screenshot-2025-06-01-at-3.50.07%E2%80%AFAM.jpg.webp"
+    ],
   },
   {
     "title": "VX جولدن سكوير",
-    "imageUrl": "https://blureg.com/wp-content/uploads/2025/12/0-04-scaled-1.webp",
+    "imageUrl":
+    "https://blureg.com/wp-content/uploads/2025/12/0-04-scaled-1.webp",
     "desc":
     "مشروع سكني عصري في جولدن سكوير، يوفر تجربة معيشة حديثة تجمع بين المرافق المتطورة والمساحات المفتوحة.",
     "details": {
@@ -361,7 +440,15 @@ List<Map<String, dynamic>> dataArabic = [
       "type": "سكني",
       "features": ["مسارات للجري", "مناطق ترفيهية", "مساحات خضراء"]
     },
-    "video_id": "QDM8rMw1fH8"
+    "video_id": "QDM8rMw1fH8",
+    "images": [
+
+      "https://mercondevelopments.com/wp-content/uploads/2025/12/0-01-1-scaled-e1765107687559.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/12/0-04-scaled.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/12/0-02-scaled.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/06/Nurai_0000_Screenshot-2025-06-01-at-3.33.45%E2%80%AFAM.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/06/Nurai_0003_Screenshot-2025-06-01-at-3.34.09%E2%80%AFAM.webp",
+    ],
   },
   {
     "title": "VX N90",
@@ -374,7 +461,17 @@ List<Map<String, dynamic>> dataArabic = [
       "type": "تجاري / إداري",
       "features": ["مكاتب إدارية", "محلات", "خدمات دعم الأعمال"]
     },
-    "video_id": "tq8ziC2WxoM"
+    "video_id": "tq8ziC2WxoM",
+
+    "images":[
+      "https://mercondevelopments.com/wp-content/uploads/2025/12/New-shot-8.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/12/Shot-33-ps-jpeg.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/12/Shot-16.2.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/12/Shot-14.2.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/12/Night-new-5.webp",
+
+    ],
+
   },
   {
     "title": "برج بافو",
@@ -387,11 +484,20 @@ List<Map<String, dynamic>> dataArabic = [
       "type": "تجاري / إداري",
       "amenities": ["جراجات", "أمن 24/7", "خدمات دعم المكاتب"]
     },
-    "video_id": "ui10jaabvoc"
+    "video_id": "ui10jaabvoc",
+    "images": [
+      "https://mercondevelopments.com/wp-content/uploads/2025/05/h11.jpg.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/05/h11543534.jpg.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/05/h112212.jpg.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/05/h1122-e1748735265427.jpg.webp",
+      "https://mercondevelopments.com/wp-content/uploads/2025/05/h11432.jpg.webp",
+    ],
   }
 ];
 
+
 // project_model.dart
+
 
 class Project {
   String title;
@@ -399,23 +505,23 @@ class Project {
   String desc;
   Details details;
   String video_id;
-
-  Project({
-    required this.title,
-    required this.imageUrl,
-    required this.desc,
-    required this.details,
-    required this.video_id,
-  });
+  List<String> images;
+  Project(
+      {required this.title,
+        required this.imageUrl,
+        required this.desc,
+        required this.details,
+        required this.video_id,
+        required this.images});
 
   factory Project.fromJson(Map<String, dynamic> json) {
     return Project(
-      title: json['title'] ?? '',
-      imageUrl: json['imageUrl'] ?? '',
-      desc: json['desc'] ?? '',
-      video_id: json['video_id'] ?? '',
-      details: Details.fromJson(json['details'] ?? {}),
-    );
+        title: json['title'] ?? '',
+        imageUrl: json['imageUrl'] ?? '',
+        desc: json['desc'] ?? '',
+        video_id: json['video_id'] ?? '',
+        details: Details.fromJson(json['details'] ?? {}),
+        images: json['images']);
   }
 
   Map<String, dynamic> toJson() {
@@ -425,9 +531,11 @@ class Project {
       'video_id': video_id,
       'desc': desc,
       'details': details.toJson(),
+      "images": images,
     };
   }
 }
+
 
 class Details {
   String? location;

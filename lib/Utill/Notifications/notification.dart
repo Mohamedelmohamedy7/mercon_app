@@ -78,7 +78,7 @@ void navigateToEditAccount(BuildContext context) async{
 void appNotificationDialogFunctions(BuildContext context) async {
   getToken();
   var initializationSettingsAndroid =
-  const AndroidInitializationSettings('@mipmap/ic_launcher');
+  const AndroidInitializationSettings('@mipmap/launcher_icon');
   final initializationSettingsIOS = DarwinInitializationSettings(requestAlertPermission: true, requestBadgePermission: true, requestSoundPermission: true);
   final initializationSettings = InitializationSettings(android: initializationSettingsAndroid, iOS: initializationSettingsIOS,);
   flutterLocalNotificationsPlugin.initialize(initializationSettings,);

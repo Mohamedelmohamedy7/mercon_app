@@ -148,13 +148,13 @@ class _PhoneAuthWidgetState extends State<PhoneAuthWidget> {
                             // errorStyle: null,
                             hintText: "email".tr(),
                             border: InputBorder.none,
-                            isDense: true,
+                            //     isDense: true,
                             contentPadding: EdgeInsets.symmetric(
                                 horizontal: 10, vertical: 10),
                             errorMaxLines: 1,
-                            errorText: '',
+                            errorText: null,
                             errorStyle: TextStyle(
-                              color: Colors.transparent,
+                            //  color: Colors.transparent,
                               fontSize: 0,
                             ),
                           ),
@@ -190,13 +190,11 @@ class _PhoneAuthWidgetState extends State<PhoneAuthWidget> {
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: TextFormField(
-
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
                           cursorColor: Colors.black,
-
                           key: _passwordKey,
                           controller: passwordController,
                           decoration: InputDecoration(
-
                             hintText: "password".tr(),
                             border: InputBorder.none,
                             suffixIcon: textFieldSvg("lock.svg"),
@@ -206,7 +204,7 @@ class _PhoneAuthWidgetState extends State<PhoneAuthWidget> {
                             errorMaxLines: 1,
                             errorText: '',
                             errorStyle: TextStyle(
-                              color: Colors.transparent,
+                            //  color: Colors.transparent,
                               fontSize: 0,
                             ),
                           ),
