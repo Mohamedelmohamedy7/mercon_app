@@ -56,7 +56,7 @@ class NotificationModel {
       isNew: json['isNew'],
       id: json['id'],
       url: json['url'],
-      createdDate: DateTime.parse(json['createdDate']),
+      createdDate: DateTime.parse(json['createdDate'].toString()),
       modifiedDate: json['modifiedDate'] != null ? DateTime.parse(json['modifiedDate']) : null,
       createdByNameId: json['createdByNameId'],
       modifiedByNameId: json['modifiedByNameId'],

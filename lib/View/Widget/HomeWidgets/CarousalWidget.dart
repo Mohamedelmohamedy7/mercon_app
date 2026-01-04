@@ -38,14 +38,14 @@ class _CarouselSliderExampleState extends State<CarouselSliderExample> {
             children: [
               Container(
                 width: MediaQuery.of(context).size.width, // عرض الشاشة كله
-                height: 230,
+                height: 210,
                 child: CarouselSlider.builder(
                   itemCount: model.mobileSliders.length,
                   itemBuilder: (BuildContext context, int index, int realIndex) {
                     return ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: Container(
-                        width: MediaQuery.of(context).size.width*0.9,
+                        width: MediaQuery.of(context).size.width*0.95,
                         child: cachedImage(
                           '${model.mobileSliders[index].sliderPath}',
                           fit: BoxFit.fill, // بدل fill عشان ياخد العرض والارتفاع بشكل مناسب
@@ -59,8 +59,8 @@ class _CarouselSliderExampleState extends State<CarouselSliderExample> {
                         _currentPage = index;
                       });
                     },
-                    height: 200,
-                    viewportFraction: 0.8,
+                    height: 180,
+                    viewportFraction: 0.85,
                     enableInfiniteScroll: true,
                     autoPlay: true,
                     enlargeCenterPage: true,

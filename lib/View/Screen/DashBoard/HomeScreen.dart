@@ -47,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     Container(
                       width: MediaQuery.of(context).size.width,
-                      height: 350,
+                      height: 330,
                       decoration: BoxDecoration(
                         color: Theme.of(context).primaryColor,
                         borderRadius: BorderRadius.only(
@@ -62,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         textAnimation(),
                         5.height,
                         CarouselSliderExample(),
-                        30.height,
+                        10.height,
                         ProjectsListView(projects:EasyLocalization.of(context)?.currentLocale?.languageCode == 'ar' ?
                         projectsArabic:projects,),
 
@@ -88,13 +88,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ],
                 ),
-                DeliveryCard(
-                  home_provider: home_provider!,
-                ),
-                10.height,
-                InternalRegulations(
-                  home_provider: home_provider!,
-                ),
+                // DeliveryCard(
+                //   home_provider: home_provider!,
+                // ),
+                // 10.height,
+                // InternalRegulations(
+                //   home_provider: home_provider!,
+                // ),
                 10.height,
                 NewsWidget(),
               ],
@@ -409,7 +409,7 @@ class ProjectsListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width,height:  MediaQuery.of(context).size.height*0.3,
+      width: MediaQuery.of(context).size.width,height:  MediaQuery.of(context).size.height*0.35,
 
       child: ListView.builder(
         padding: const EdgeInsets.symmetric(horizontal:4,vertical: 1),
@@ -420,7 +420,7 @@ class ProjectsListView extends StatelessWidget {
           return Container(
               margin: EdgeInsets.symmetric(horizontal: 4),
 
-              width:  MediaQuery.of(context).size.width*0.55,height: 190,
+              width:  MediaQuery.of(context).size.width*0.55,height: 220,
               child: InkWell(
                   onTap: (){
                     pushRoute(context: context, route: ProjectDetailPage(

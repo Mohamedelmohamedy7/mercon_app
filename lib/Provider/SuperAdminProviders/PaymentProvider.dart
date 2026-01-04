@@ -13,6 +13,7 @@ class PaymentProvider extends ChangeNotifier {
 
   bool first = true;
   bool notify = true;
+
   Future<void> getPaymentLogs(context) async {
     paymentLogsList.clear();
     startLoader();
@@ -21,6 +22,11 @@ class PaymentProvider extends ChangeNotifier {
       urlEndPoint: GetOwnersPaymentLogs,
       //  body: json.encode({"pageNumber": 0, "pageSize": 0})
     );
+    if (json.decode(res)["data"] == "") {
+      S_finishLoader();
+      first = true;
+      return;
+    }
     for (PaymentLog payment in paymentLogsModelFromJson(res)) {
       paymentLogsList.add(payment);
       first = false;
@@ -38,7 +44,7 @@ class PaymentProvider extends ChangeNotifier {
     required int? levelId,
     required int? paymentTypeId,
     required String description,
-  //  required String recivedType,
+    //  required String recivedType,
     required bool isAllUnits,
     required String value,
   }) async {
@@ -52,7 +58,7 @@ class PaymentProvider extends ChangeNotifier {
           "unitId": unitId,
           "levelId": levelId,
           "paymentTypeId": paymentTypeId,
-         // "recivedType": recivedType,
+          // "recivedType": recivedType,
           "description": description,
           "value": value,
           "isAllUnits": isAllUnits
@@ -68,9 +74,10 @@ class PaymentProvider extends ChangeNotifier {
     S_finishLoader();
     return json.decode(res)["message"].toString();
   }
+
   List<PaymentType> paymentTypesList = [];
 
-  Future< List<PaymentType> > getPaymentTypes(context) async {
+  Future<List<PaymentType>> getPaymentTypes(context) async {
     paymentTypesList.clear();
     startLoader();
     final res = await getFunctionRestApi(
@@ -85,6 +92,7 @@ class PaymentProvider extends ChangeNotifier {
     S_finishLoader();
     return paymentTypesList;
   }
+
   void S_finishLoader() {
     status = LoadingStatus.SUCCESS;
     notifyListeners();

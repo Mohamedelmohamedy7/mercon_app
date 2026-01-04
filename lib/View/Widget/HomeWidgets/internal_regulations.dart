@@ -24,42 +24,34 @@ class InternalRegulations extends StatelessWidget {
       },
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 10),
-        child: DottedBorder(
-          borderType: BorderType.RRect,
-          radius: Radius.circular(10),
-          strokeWidth: 1.5,
-          dashPattern: [6, 3],
-          color: Theme.of(context).primaryColor,
-          child: Container(
-            width: double.infinity,
-            padding: EdgeInsets.all(5.0),
-            child: Row(
-              children: [
-                5.width,
-                SvgPicture.asset(
-                  "assets/images/book.svg",
-                  width: 47,
-                  height: 47,
-                  color: Theme.of(context).primaryColor,
-                ),
-                10.width,
-                Text(
-                  'internalRegulation'.tr(),
-                  style: CustomTextStyle.bold16White.copyWith(
-                      color: Colors.black.withOpacity(0.7),
-                      fontSize: 13,
-                      fontWeight: FontWeight.w600),
-                  textAlign: TextAlign.center,
-                ),
-                Spacer(),
-                Icon(
-                  Icons.arrow_forward_ios_rounded,
-                  color: Theme.of(context).primaryColor,
-                  size: 20,
-                ),
-                SizedBox(width: 10,)
-              ],
-            ),
+        child: Container(
+          width: double.infinity,
+          padding: EdgeInsets.all(5.0),
+          child: Row(
+            children: [
+               SvgPicture.asset(
+                "assets/images/book.svg",
+                width: 20,
+                height: 20,
+                color: Theme.of(context).primaryColor,
+              ),
+              10.width,
+              Text(
+                'internalRegulation'.tr(),
+                style: CustomTextStyle.bold16White.copyWith(
+                    color: Colors.black.withOpacity(0.7),
+                    fontSize: 13,
+                    fontWeight: FontWeight.w600),
+                textAlign: TextAlign.center,
+              ),
+              Spacer(),
+              Spacer(),
+              Icon(
+                Icons.arrow_forward_ios_rounded,
+                color: Theme.of(context).primaryColor,
+                size: 15,
+              ),
+             ],
           ),
         ),
       ),

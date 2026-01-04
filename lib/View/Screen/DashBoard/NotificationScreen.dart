@@ -71,7 +71,7 @@ class _NotificationScreenState extends State<NotificationScreen> with SingleTick
                     ? Container()
                     : TabBar(
                   controller: _tabController,
-                  labelPadding: const EdgeInsets.symmetric(horizontal: 0, vertical: 12),
+                  labelPadding: const EdgeInsets.symmetric(horizontal: 0, vertical: 5),
                   indicatorPadding: EdgeInsets.zero,
                   labelColor: Colors.brown,
                   unselectedLabelColor: Colors.brown,

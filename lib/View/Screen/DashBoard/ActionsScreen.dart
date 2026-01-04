@@ -21,6 +21,7 @@ import 'package:flutter/foundation.dart';
 import 'package:provider/provider.dart';
 import 'package:widget_and_text_animator/widget_and_text_animator.dart';
 
+import '../../../Provider/HomeProvider.dart';
 import '../../../Utill/AnimationWidget.dart';
 import '../../../Utill/Comman.dart';
 
@@ -31,6 +32,7 @@ import '../../../helper/color_resources.dart';
 
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../Widget/HomeWidgets/internal_regulations.dart';
 import '../../Widget/comman/CustomAppBar.dart';
 import '../PartAuth/edit_account.dart';
 import '../ResaleAndOwnershipTransferScreen.dart';
@@ -151,12 +153,7 @@ class _ActionsScreenState extends State<ActionsScreen>
                     size: 26,
                   ),
                   context: context),
-              5.height,
-              Container(
-                color: Theme.of(context).primaryColor.withOpacity(0.3),
-                height: 1,
-                width: w(context),
-              ),
+
               20.height,
               containerNotification(
                   context,
@@ -178,6 +175,10 @@ class _ActionsScreenState extends State<ActionsScreen>
                       () => pushRoute(
                       context: context, route: AllComplaintsScreen(needBack: true,)// ComplaintFormScreen(needBack: true,),
               )),
+              20.height,
+              InternalRegulations(
+                home_provider: Provider.of<HomeProvider>(context, listen: false)!,
+              ),
               20.height,
               containerNotification(
                   context,

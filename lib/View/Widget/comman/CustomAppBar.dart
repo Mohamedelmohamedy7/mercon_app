@@ -29,8 +29,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: bottom == null ? MediaQuery.of(context).size.height * 0.079:
-      MediaQuery.of(context).size.height * 0.13,
+      height: bottom == null ? MediaQuery.of(context).size.height * 0.0799:
+      MediaQuery.of(context).size.height * 0.145,
       // decoration: BoxDecoration(
       //   image: DecorationImage(
       //     image: backgroundImage,

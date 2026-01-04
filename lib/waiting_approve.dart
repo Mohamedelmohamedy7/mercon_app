@@ -3,6 +3,7 @@ import 'package:core_project/View/Screen/SuperAdminScreens/dashboard_super_admin
 import 'package:core_project/check_user_type.dart';
 import 'package:core_project/helper/size_utils.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -92,9 +93,9 @@ class _WaitingApproveState extends State<WaitingApprove> {
                       repeat: false,
                       fit: BoxFit.cover,
                     ),
-                    30.height,
+                    90.height,
                     Padding(
-                      padding:   EdgeInsetsDirectional.symmetric(horizontal: 60,vertical: 40) ,
+                      padding:   EdgeInsetsDirectional.symmetric(horizontal: 60, ) ,
                       child: Text(
                         "waitingApprove".tr(namedArgs: {
                           'comName': (p_Listeneress<ConfigProvider>(context)
@@ -103,7 +104,7 @@ class _WaitingApproveState extends State<WaitingApprove> {
                               ""
                         }),
                         style: CustomTextStyle.bold16White.copyWith(
-                            color: Colors.white,
+                            color: Colors.black,
                             fontSize: 15),
                         textAlign: TextAlign.center,
                       ),
