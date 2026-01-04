@@ -7,6 +7,7 @@ import 'package:core_project/View/Widget/HomeWidgets/units_widget.dart';
 import 'package:core_project/helper/color_resources.dart';
 import 'package:core_project/helper/text_style.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:provider/provider.dart';
@@ -21,6 +22,7 @@ import '../../Widget/HomeWidgets/CarousalWidget.dart';
 import '../../Widget/HomeWidgets/NewsWidget.dart';
 import '../../Widget/HomeWidgets/delivery_card.dart';
 import '../../Widget/comman/comman_Image.dart';
+import '../PartAuth/SplashScreen.dart';
 import '../ProjectDetailPage.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -32,7 +34,30 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   HomeProvider? home_provider;
+  List<String> compoundList = [
+    "Riverton New Cairo",
+    "Nurai Golden Square",
+    "VX Golden Square",
+  ];
 
+  String currentCompound = "Riverton New Cairo";
+
+  @override
+  void initState() {
+    Future.delayed(const Duration(seconds: 0), () async {
+      await Provider.of<LoginProvider>(context, listen: false)
+          .checkUserValidation(context);
+    });
+    home_provider = Provider.of<HomeProvider>(context, listen: false);
+    super.initState();
+    getMyName();
+    if (globalAccountData.getCurrentCompound() == null) {
+      globalAccountData.setCurrentCompound("Riverton New Cairo");
+    }
+    setState(() {
+      currentCompound = globalAccountData.getCurrentCompound() ?? "";
+    });
+  }
    @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -105,17 +130,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  @override
-  void initState() {
 
-    Future.delayed(const Duration(seconds: 0), () async {
-      await Provider.of<LoginProvider>(context, listen: false)
-          .checkUserValidation(context);
-    });
-    home_provider = Provider.of<HomeProvider>(context, listen: false);
-    super.initState();
-    getMyName();
-  }
 
   void getMyName() {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
@@ -142,23 +157,98 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               DefaultTextStyle(
                 textAlign: TextAlign.left,
-                style: CustomTextStyle.semiBold14grey.copyWith(fontSize: 14,color: Colors.white),
-                child: AnimatedTextKit(
-                  repeatForever: false,
-                  isRepeatingAnimation: false,
-                  animatedTexts: [
-                    TypewriterAnimatedText("  "),
-                    TypewriterAnimatedText(
-                        " ${"Welcome".tr()},${globalAccountData.getUsername()} "),
-                  ],
+                style: CustomTextStyle.semiBold14grey.copyWith(
+                  fontSize: 14,
+                  color: Colors.white,
+                ),
+                child: Text(
+                  "${"Welcome".tr()} ${globalAccountData.getUsername()}",
                 ),
               ),
+
               WeatherScreen(),
             ],
           ),
         ),
+         90.width,
+         Expanded(
+          child: Container(
+            height: 45,
+            decoration: BoxDecoration(
+              color: Colors.grey[50],
+              borderRadius: BorderRadius.circular(25),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black12,
+                  blurRadius: 5,
+                  offset: Offset(0, 2),
+                ),
+              ],
+              border: Border.all(
+                color: Theme.of(context).primaryColor,
+                width: 1.5,
+              ),
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            child: DropdownButtonHideUnderline(
+              child: DropdownButton<String>(
+                value: currentCompound,
+                hint: Text(
+                  currentCompound,
+                  style: const TextStyle(
+                    color: Colors.grey,fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                icon: const Icon(
+                  Icons.arrow_drop_down,
+                  color: Colors.black87,
+                  size: 26,
+                ),
+                style: const TextStyle(
+                  color: Colors.black87,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                ),
+                dropdownColor: Theme.of(context).primaryColor,
+                elevation: 8,
+                borderRadius: BorderRadius.circular(20),
+                isExpanded: true,
+                onChanged: (String? value) {
+                  if (value != null) {
+                    setState(() {
+                      currentCompound = value;
+                    });
+                    globalAccountData.setCurrentCompound(value);
 
-        cachedImage(ImagesConstants.logo, width: 110, height: 60),
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => const SplashScreen()),
+                          (route) => false,
+                    );
+                  }
+                },
+                items: compoundList.map((e) => DropdownMenuItem<String>(
+                  value: e,
+                  child: Center(
+                    child: Text(
+                      e,
+                      style: const TextStyle(
+                        color: Colors.black87,fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                )).toList(),
+              ),
+            ),
+          ),
+        ),
+
+
+        // cachedImage(ImagesConstants.logo, width: 110, height: 60),
         // cachedImage(globalAccountData.getCompoundLogo(), width: 40, height: 40),
         10.width,
       ],

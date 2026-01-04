@@ -130,8 +130,10 @@ class _RequestUnitDetailsScreenState extends State<RequestUnitDetailsScreen> {
                                             Icon(Icons.location_on,
                                                 size: 16, color: Colors.red),
                                             const SizedBox(width: 4),
-                                            Text(
-                                              data?.address ?? "",
+                                            Expanded(
+                                              child: Text(
+                                                data?.address ?? "",
+                                              ),
                                             ),
                                           ],
                                         ),

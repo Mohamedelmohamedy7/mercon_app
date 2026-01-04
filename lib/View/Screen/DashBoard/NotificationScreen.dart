@@ -1,4 +1,5 @@
 import 'package:core_project/Model/NotificationModel.dart';
+import 'package:core_project/Provider/HomeProvider.dart';
 import 'package:core_project/Provider/NotifcationProvider.dart';
 import 'package:core_project/View/Widget/comman/comman_Image.dart';
 import 'package:core_project/helper/EnumLoading.dart';
@@ -11,14 +12,19 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:provider/provider.dart';
+import '../../../Model/HomeComponantModel/NewsModel.dart';
 import '../../../Utill/Comman.dart';
 import '../../../helper/ImagesConstant.dart';
+import '../../../show_news_detials.dart';
 import '../../Widget/MyOrdersWidget/ListOrders.dart';
 import '../../Widget/comman/CustomAppBar.dart';
 import '../Services/ServicesCategories.dart';
+import '../units_owner.dart';
 
 class NotificationScreen extends StatefulWidget {
-  const NotificationScreen({Key? key, required this.needBack, required this.adminScreen}) : super(key: key);
+  const NotificationScreen(
+      {Key? key, required this.needBack, required this.adminScreen})
+      : super(key: key);
   final bool needBack;
   final bool adminScreen;
 
@@ -26,7 +32,8 @@ class NotificationScreen extends StatefulWidget {
   State<NotificationScreen> createState() => _NotificationScreenState();
 }
 
-class _NotificationScreenState extends State<NotificationScreen> with SingleTickerProviderStateMixin {
+class _NotificationScreenState extends State<NotificationScreen>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -35,7 +42,8 @@ class _NotificationScreenState extends State<NotificationScreen> with SingleTick
     _tabController = TabController(length: 4, vsync: this);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<NotificationProvider>(context, listen: false).getMyNotifcation(context);
+      Provider.of<NotificationProvider>(context, listen: false)
+          .getMyNotifcation(context);
     });
 
     _tabController.addListener(() {
@@ -70,61 +78,71 @@ class _NotificationScreenState extends State<NotificationScreen> with SingleTick
                 child: widget.adminScreen
                     ? Container()
                     : TabBar(
-                  controller: _tabController,
-                  labelPadding: const EdgeInsets.symmetric(horizontal: 0, vertical: 5),
-                  indicatorPadding: EdgeInsets.zero,
-                  labelColor: Colors.brown,
-                  unselectedLabelColor: Colors.brown,
-                  tabs: List.generate(4, (index) {
-                    return _buildTab(
-                      index == _tabController.index, // true إذا كانت نشطة
-                      index == 0 ? 'urgent_notify'.tr() :
-                        index == 1 ? 'news'.tr() :
-                        index == 2 ? 'finance'.tr() :  'events'.tr() ,
-                      showDivider: index != 3,
-                    );
-                  }),
-                ),
+                        controller: _tabController,
+                        labelPadding: const EdgeInsets.symmetric(
+                            horizontal: 0, vertical: 5),
+                        indicatorPadding: EdgeInsets.zero,
+                        labelColor: Colors.brown,
+                        unselectedLabelColor: Colors.brown,
+                        tabs: List.generate(4, (index) {
+                          return _buildTab(
+                            index == _tabController.index, // true إذا كانت نشطة
+                            index == 0
+                                ? 'urgent_notify'.tr()
+                                : index == 1
+                                    ? 'news'.tr()
+                                    : index == 2
+                                        ? 'finance'.tr()
+                                        : 'events'.tr(),
+                            showDivider: index != 3,
+                          );
+                        }),
+                      ),
               ),
             ),
           ),
           body: widget.adminScreen
-              ? buildNotificationList(Provider.of<NotificationProvider>(context).myNotification)
+              ? buildNotificationList(
+                  Provider.of<NotificationProvider>(context).myNotification)
               : TabBarView(
-            controller: _tabController,
-            children: [
-              buildNotificationList(
-                Provider.of<NotificationProvider>(context).myNotification,
-                add: true, // نضيف dummyConstructionStageNotifications هنا
-              ),
-              buildNotificationList(
-                Provider.of<NotificationProvider>(context).myNotification,
-                add: true, // نضيف dummyConstructionStageNotifications هنا
-              ),
-              buildNotificationList(dummyInstallmentsNotifications),
-              Stack(
-                children: [
-                  buildNotificationList(dummyOccasionsNotifications),
-                  Opacity(
-                      opacity: 0.8,
-                      child: Lottie.asset("assets/images/festival.json", repeat: false))
-                ],
-              ),
-            ],
-          ),
+                  controller: _tabController,
+                  children: [
+                    buildNotificationList(
+                      Provider.of<NotificationProvider>(context)
+                          .myNotification
+                          .where((element) => element.notificationTypeID == "1")
+                          .toList(),
+                      news:
+                          false, // نضيف dummyConstructionStageNotifications هنا
+                    ),
+                    buildNotificationList(
+                      Provider.of<NotificationProvider>(context)
+                          .myNotification
+                          .where((element) => element.notificationTypeID == "2")
+                          .toList(),
+                      news:
+                          true, // نضيف dummyConstructionStageNotifications هنا
+                    ),
+                    buildNotificationList(dummyInstallmentsNotifications,finance: true),
+                    Stack(
+                      children: [
+                        buildNotificationList(dummyOccasionsNotifications),
+                        Opacity(
+                            opacity: 0.8,
+                            child: Lottie.asset("assets/images/festival.json",
+                                repeat: false))
+                      ],
+                    ),
+                  ],
+                ),
         ),
       ),
     );
   }
 
   /// 👈 دالة إنشاء ليستة الإشعارات
-  Widget buildNotificationList(List<NotificationModel> myNotification, {bool? add}) {
-    // إنشاء نسخة لتجنب تعديل الـ provider مباشرة
-    List<NotificationModel> displayList = [...myNotification];
-    if (add == true) {
-      displayList.addAll(dummyConstructionStageNotifications.reversed.toList());
-    }
-
+  Widget buildNotificationList(List<NotificationModel> myNotification,
+      {bool? news,bool ? finance}) {
     return Consumer<NotificationProvider>(
       builder: (context, model, _) {
         if (model.status == LoadingStatus.LOADING) {
@@ -142,14 +160,52 @@ class _NotificationScreenState extends State<NotificationScreen> with SingleTick
             itemCount: 10,
           );
         } else {
-          return displayList.isEmpty
+          return myNotification.isEmpty
               ? Center(child: emptyList())
               : ListView.separated(
-            padding: const EdgeInsets.only(top: 20),
-            itemBuilder: (context, index) => containerNotification(displayList[index], context),
-            separatorBuilder: (context, index) => const SizedBox(height: 10),
-            itemCount: displayList.length,
-          );
+                  padding: const EdgeInsets.only(top: 20),
+                  itemBuilder: (context, index) => InkWell(
+                      onTap: () {
+
+                        if (news == true) {
+                          final homeProvider =
+                          Provider.of<HomeProvider>(context, listen: false);
+
+                          final String? newsId =
+                          myNotification[index].newsID?.toString();
+                           if (newsId == null) return;
+
+                          final NewsModel? newsModel = homeProvider.newsList
+                              .cast<NewsModel?>()
+                              .firstWhere(
+                                (  element) {
+                                   return element!.id.toString() == newsId;
+                                },
+                            orElse: () => null,
+                          );
+
+                          if (newsModel != null) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => ShowNewsDetials(
+                                  newsModel: newsModel,
+                                ),
+                              ),
+                            );
+                          }
+                        }
+                        if(finance==true){
+                          pushRoute(context: context, route: const UnitsOwner());
+                        }
+
+                      },
+                      child: containerNotification(
+                          myNotification[index], context)),
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(height: 10),
+                  itemCount: myNotification.length,
+                );
         }
       },
     );
@@ -166,9 +222,10 @@ class _NotificationScreenState extends State<NotificationScreen> with SingleTick
                 color: isActive ? Colors.brown : Colors.brown.withOpacity(0.6),
                 width: isActive ? 2 : 1,
               ),
-              color: isActive ? Colors.brown.withOpacity(0.1) : Colors.transparent,
+              color:
+                  isActive ? Colors.brown.withOpacity(0.1) : Colors.transparent,
             ),
-            padding: const EdgeInsets.symmetric(vertical: 8, horizontal:2),
+            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 2),
             child: Center(
               child: Text(
                 text,
@@ -212,8 +269,10 @@ Container containerNotification(NotificationModel myNotification, context) {
     child: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 15),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          cachedImage(myNotification.url, width: 50, height: 60, color: Theme.of(context).primaryColor),
+          cachedImage(myNotification.url,
+              width: 50, height: 60, color: Theme.of(context).primaryColor),
           10.width,
           Expanded(
             child: Column(
@@ -224,16 +283,20 @@ Container containerNotification(NotificationModel myNotification, context) {
                   style: CustomTextStyle.semiBold12Black,
                 ),
                 Text(
-                  condation(context) ? "${myNotification.titleEn}" : "${myNotification.titleAr}",
+                  condation(context)
+                      ? "${myNotification.titleEn}"
+                      : "${myNotification.titleAr}",
                   style: CustomTextStyle.regular14Black,
                 ),
                 Text(
-                  condation(context) ? myNotification.descriptionEn ?? '' : myNotification.descriptionAr ?? '',
+                  condation(context)
+                      ? myNotification.descriptionEn ?? ''
+                      : myNotification.descriptionAr ?? '',
                   style: CustomTextStyle.semiBold12Black,
                   textAlign: TextAlign.start,
-                  maxLines: null,
+                  maxLines: 3,
                   softWrap: true,
-                  overflow: TextOverflow.visible,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ],
             ),

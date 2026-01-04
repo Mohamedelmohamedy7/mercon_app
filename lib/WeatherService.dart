@@ -120,7 +120,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
         Text(
           '${temp.toStringAsFixed(1)}°C',
           style: CustomTextStyle.regular14Gray.copyWith(
-            fontSize: 15,
+            fontSize: 14,
             fontWeight: FontWeight.w600,
             color: Colors.white,
           ),

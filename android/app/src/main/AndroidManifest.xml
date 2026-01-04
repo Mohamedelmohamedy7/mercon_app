@@ -19,8 +19,8 @@
 
         android:requestLegacyExternalStorage="true"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher"
-        android:label="The Gate Key">
+        android:icon="@mipmap/launcher_icon"
+        android:label="mercon">
         <meta-data android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBiJoE2HCQJGAe1xoLJAz-Edvml2Xhsrkk"/>
         <activity

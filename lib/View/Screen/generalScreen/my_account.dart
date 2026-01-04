@@ -85,96 +85,134 @@ class _MyAccountState extends State<MyAccount> {
                 itemBuilder: (context, index) {
                   final unit = units[index];
                   return Card(
-                    elevation: 4,
+                    elevation: 6,
+                    shadowColor: Colors.black26,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
+                      borderRadius: BorderRadius.circular(18),
                     ),
-                    margin: EdgeInsets.symmetric(vertical: 8, horizontal: 4),
-                    child: Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                    margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 6),
+                    clipBehavior: Clip.antiAlias,
+                    child: SizedBox(
+                      height: 140,
+                      child: Row(
                         children: [
-                          // MODEL
-                          Row(
-                            children: [
-                              CircleAvatar(
-                                radius: 12,
-                                backgroundColor: Theme.of(context).primaryColor.withOpacity(0.2),
-                                child: Icon(Icons.account_balance, color: Theme.of(context).primaryColor, size: 16),
-                              ),
-                              8.width,
-                              Text("model".tr() + ": ", style: CustomTextStyle.medium14Black),
-                              Flexible(child: Text(unit.modelName, style: CustomTextStyle.bold14black, overflow: TextOverflow.ellipsis)),
-                            ],
-                          ),
-                          8.height,
 
-                          // BUILDING
-                          Row(
+                          /// IMAGE SIDE
+                          Stack(
                             children: [
-                              CircleAvatar(
-                                radius: 12,
-                                backgroundColor: Theme.of(context).primaryColor.withOpacity(0.2),
-                                child: Icon(Icons.home_outlined, color: Theme.of(context).primaryColor, size: 16),
+                              Image.asset(
+                                "assets/images/home1.jpg", // غيرها حسب مشروعك
+                                width: 130,
+                                height: double.infinity,
+                                fit: BoxFit.cover,
                               ),
-                              8.width,
-                              Text("builds".tr() + ": ", style: CustomTextStyle.medium14Black),
-                              Flexible(child: Text(unit.buildingName, style: CustomTextStyle.bold14black, overflow: TextOverflow.ellipsis)),
-                            ],
-                          ),
-                          8.height,
-
-                          // LEVELS & UNITS
-                          Row(
-                            children: [
-                              CircleAvatar(
-                                radius: 12,
-                                backgroundColor: Theme.of(context).primaryColor.withOpacity(0.2),
-                                child: Icon(Icons.add_business_outlined, color: Theme.of(context).primaryColor, size: 16),
-                              ),
-                              8.width,
-                              Text("levels".tr() + ": ", style: CustomTextStyle.medium14Black),
-                              Text(unit.levelName, style: CustomTextStyle.bold14black),
-                              Spacer(),
-                              CircleAvatar(
-                                radius: 12,
-                                backgroundColor: Theme.of(context).primaryColor.withOpacity(0.2),
-                                child: Icon(Icons.ad_units, color: Theme.of(context).primaryColor, size: 16),
-                              ),
-                              8.width,
-                              Text("units".tr() + ": ", style: CustomTextStyle.medium14Black),
-                              Text(unit.unitNumber, style: CustomTextStyle.bold14black),
-                            ],
-                          ),
-                          8.height,
-
-                          // STATUS
-                          Row(
-                            children: [
-                              Text("case".tr() + ": ", style: CustomTextStyle.medium14Black),
-                              SizedBox(width: 6),
                               Container(
-                                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                                width: 130,
                                 decoration: BoxDecoration(
-                                  color: unit.statusName == "Active" ? Colors.green.shade100 : Colors.red.shade100,
-                                  borderRadius: BorderRadius.circular(12),
+                                  gradient: LinearGradient(
+                                    begin: Alignment.topCenter,
+                                    end: Alignment.bottomCenter,
+                                    colors: [
+                                      Colors.black.withOpacity(0.2),
+                                      Colors.black.withOpacity(0.55),
+                                    ],
+                                  ),
                                 ),
-                                child: Text(
-                                  unit.statusName == "Active" ? "Active ✅" : "Inactive ❌",
-                                  style: TextStyle(
-                                    color: unit.statusName == "Active" ? Colors.green.shade800 : Colors.red.shade800,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 12,
+                              ),
+
+                              /// STATUS
+                              Align(
+                                alignment: AlignmentDirectional.topCenter,
+                                child: Container(
+                                  margin:EdgeInsets.all(10),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 2, vertical: 4),
+                                  decoration: BoxDecoration(
+                                    color:Colors.white,
+                                    borderRadius: BorderRadius.circular(16),
+                                  ),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      5.width,
+                                      Icon(
+                                        unit.statusName == "Active"
+                                            ? Icons.check_circle
+                                            : Icons.cancel,
+                                        size: 14,
+                                        color: unit.statusName == "Active"
+                                            ? Colors.green
+                                            : Colors.red,
+                                      ),
+                                      4.width,
+                                      Text(
+                                        unit.statusName == "Active"
+                                            ? "Active"
+                                            : "Inactive",
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.bold,
+                                          color: unit.statusName == "Active"
+                                              ? Colors.green.shade800
+                                              : Colors.red.shade800,
+                                        ),
+                                      ),
+                                      5.width,
+                                    ],
                                   ),
                                 ),
                               ),
                             ],
                           ),
+
+                          /// CONTENT SIDE
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.all(12),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+
+                                  _infoRow(
+                                    icon: Icons.account_balance,
+                                    title: "model".tr(),
+                                    value: unit.modelName,
+                                  ),
+                                  _infoRow(
+                                    icon: Icons.home,
+                                    title: "building_number".tr(),
+                                    value: unit.buildingName,
+                                  ),
+
+                                  _infoRow(
+                                    icon: Icons.layers_outlined,
+                                    title: "levels".tr(),
+                                    value: unit.levelName,
+                                    trailing: Row(
+                                      children: [
+                                        Icon(Icons.home_work_outlined,
+                                            size: 16,
+                                            color: Theme.of(context).primaryColor),
+                                        4.width,
+                                        Text(
+                                          unit.unitNumber,
+                                          style: CustomTextStyle.bold14black,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+
+                                ],
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),
                   );
+
+
 
                 },
               ),
@@ -213,4 +251,39 @@ class _MyAccountState extends State<MyAccount> {
       ),
     );
   }
+  Widget _infoRow({
+    required IconData icon,
+    required String title,
+    required String value,
+    Widget? trailing,
+  }) {
+    return Row(
+      children: [
+        CircleAvatar(
+          radius: 14,
+          backgroundColor: Colors.grey.shade100,
+          child: Icon(icon, size: 16, color: Colors.grey.shade700),
+        ),
+        8.width,
+        Expanded(
+          child: RichText(
+            text: TextSpan(
+              children: [
+                TextSpan(
+                  text: "$title: ",
+                  style: CustomTextStyle.medium14Black,
+                ),
+                TextSpan(
+                  text: value,
+                  style: CustomTextStyle.bold14black,
+                ),
+              ],
+            ),
+          ),
+        ),
+        if (trailing != null) trailing,
+      ],
+    );
+  }
+
 }

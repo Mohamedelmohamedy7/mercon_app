@@ -192,7 +192,7 @@ class OwnersManagementProvider extends ChangeNotifier {
       "unitID": unitID,
       "ownerID":ownerDataID?? ownerID,
       "statusID": statusID, }.toString());
-    print("SEWc-*-*-*-*->>");
+
     final res = await putFunctionRestApi(
       context,
       url: StatusForOwnerAndUnit,
