@@ -13,6 +13,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -34,6 +35,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../Widget/HomeWidgets/internal_regulations.dart';
 import '../../Widget/comman/CustomAppBar.dart';
+import '../PartAuth/SplashScreen.dart';
 import '../PartAuth/edit_account.dart';
 import '../ResaleAndOwnershipTransferScreen.dart';
 import '../SendMessageToSecurity.dart';
@@ -79,9 +81,17 @@ class _ActionsScreenState extends State<ActionsScreen>
     _getStatusSwitch();
     super.initState();
   }
+  List<String> compoundList = [
+    "Riverton New Cairo",
+    "Nurai Golden Square",
+    "VX Golden Square",
+  ];
+
+  String currentCompound = "Riverton New Cairo";
 
   @override
   Widget build(BuildContext context) {
+    var lang = EasyLocalization.of(context)?.currentLocale?.languageCode == 'ar';
     return SafeArea(
         child: Scaffold(
       appBar: CustomAppBar(
@@ -136,7 +146,105 @@ class _ActionsScreenState extends State<ActionsScreen>
                   ],
                 ),
               ),
-              15.height,
+              5.height,
+              Container(
+                margin: const EdgeInsetsDirectional.only(start: 10,end: 10,top: 18),
+                padding: const EdgeInsetsDirectional.only(start: 1,end: 5,top: 9,bottom: 9),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).primaryColor.withOpacity(0.2),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Center(
+                  child: Row(
+                    children: [
+                      const SizedBox(width: 10),
+                      const Icon(Icons.home_work_outlined),
+                      const SizedBox(width: 5),
+                       Text(lang
+                           ? "متابعة وحداتك الخاصة بـ"
+                           : "Current compound is",
+                           style:CustomTextStyle.semiBold14Black.copyWith(fontSize: 12)),
+                      const SizedBox(width: 35),
+                       Expanded(
+                        child: SizedBox(
+
+                          height: 40,
+                          child: DropdownButtonFormField<String>(
+                            value: currentCompound,
+                            hint: Text(
+                               currentCompound,
+                              style: const TextStyle(color: Colors.grey,),
+                              textAlign: TextAlign.center,
+                            ),
+                            decoration: InputDecoration(
+                              filled: true,
+                              fillColor: Colors.grey[100], // خلفية خفيفة
+                              contentPadding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20), // حواف مدورة أكثر
+                                borderSide:   BorderSide(color: Theme.of(context).primaryColor, width: 1.5),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                                borderSide:   BorderSide(color:Theme.of(context).primaryColor, width: 1.5),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                                borderSide:   BorderSide(color:
+                                    Theme.of(context).primaryColor, width: 2),
+                              ),
+                            ),
+                            icon: const Icon(
+                              Icons.arrow_drop_down,
+                              color: Colors.black, // لون الأيقونة
+                              size: 28,
+                            ),
+                            style: const TextStyle(
+                              color: Colors.black87,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            dropdownColor: Colors.white, // خلفية الـ menu
+                            elevation: 8, // شادو للـ menu
+                            borderRadius: BorderRadius.circular(15), // حواف مدورة للـ menu
+                            onChanged: (String? value) async {
+                              if(value != null){
+                                setState(() {
+                                  currentCompound = value;
+                                });
+                              }
+                              setState(() {});
+                              globalAccountData.setCurrentCompound(value!);
+
+
+                              Navigator.pushAndRemoveUntil(context,
+                                  MaterialPageRoute(builder: (context)=> const SplashScreen()),
+                                      (route) => false);
+                            },
+                            items: (  compoundList).map((e) {
+                              return DropdownMenuItem<String>(
+                                value: e,
+                                child: Padding(
+                                  padding:   EdgeInsetsDirectional.only(start: 5),
+                                  child: Text(
+                                    e,
+                                    style: const TextStyle(
+                                      color: Colors.black87,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              );
+                            }).toList(),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              10.height,
               containerNotification(
                   context,
                   "language",
@@ -363,8 +471,12 @@ class _ActionsScreenState extends State<ActionsScreen>
   }
 
   _getStatusSwitch() {
+    if(globalAccountData.getCurrentCompound()==null){
+      globalAccountData.setCurrentCompound("Riverton New Cairo");
+    }
     setState(() {
       switchValue = globalAccountData.getFingerPrint() ?? false;
+      currentCompound = globalAccountData.getCurrentCompound() ?? "";
     });
   }
 }

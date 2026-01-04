@@ -15,6 +15,7 @@ class globalAccountData {
   static const _accessToken = '_accessToken';
   static const _contactNumber = 'contactNumber';
   static const _fingerPrint = 'fingerPrint';
+  static const _currentCompound = 'currentCompound';
   static const _unitModel = 'unitModel';
   static const _unitNumber = 'unitNumber';
   static const _userType = 'userType';
@@ -49,6 +50,10 @@ class globalAccountData {
 
   static Future setFingerAvalible(bool fingerprint) async =>
       await _preferences?.setBool(_fingerPrint, fingerprint);
+  static Future setCurrentCompound(String  currentCompound) async =>
+      await _preferences?.setString(_currentCompound, currentCompound);
+  static String? getCurrentCompound() => _preferences?.getString(_currentCompound);
+
 
   static bool? getFingerPrint() => _preferences?.getBool(_fingerPrint);
 
