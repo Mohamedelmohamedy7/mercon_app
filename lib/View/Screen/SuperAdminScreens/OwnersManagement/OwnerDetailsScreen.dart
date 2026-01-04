@@ -815,16 +815,19 @@ class _OwnerDetailsScreenState extends State<OwnerDetailsScreen> {
                                                                             model.checkUnitBelongingToAnotherOwner(context, unitId: unitDetails.unitID).then((value) {
                                                                               print("${widget.id} hereeeee ${value?.toJson()}");
                                                                               if (value?.data.toString() == "2") {
-
-                                                                                model.statusForOwnerAndUnit(
+                                                                                model
+                                                                                    .statusForOwnerAndUnit(
                                                                                       context,
                                                                                       ownerUnitOldID: null,
                                                                                       ownerID: unitDetails.ownerUnitsID,
-                                                                                      ownerDataID:widget.id,
+                                                                                      ownerDataID: widget.id,
                                                                                       unitID: unitDetails.unitID,
                                                                                       statusID: 2,
                                                                                     )
-                                                                                    .then((value) => model.getUnitOwnerDetails(context, id: widget.id));
+                                                                                    .then((value) => model.getUnitOwnerDetails(context, id: widget.id))
+                                                                                    .catchError((err) {
+                                                                                  model.getUnitOwnerDetails(context, id: widget.id);
+                                                                                });
                                                                               } else if (value?.data.toString() == "1") {
                                                                                 showDialog(
                                                                                   context: context,

@@ -30,15 +30,19 @@ class _MyAppState extends State<MyApp> {
         statusBarIconBrightness: Brightness.light,
       ),
     );
-    return MaterialApp(
-      navigatorKey: navigatorKey,
-      debugShowCheckedModeBanner: false,
-      onGenerateRoute: RouteGenerator.getRoute,
-      theme: Provider.of<ThemeProvider>(context).darkTheme ? dark : light,
-      initialRoute: Routes.splashRoute,
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
-      locale: context.locale,
+    return SafeArea(
+      top: false,
+      bottom: true,
+      child: MaterialApp(
+        navigatorKey: navigatorKey,
+        debugShowCheckedModeBanner: false,
+        onGenerateRoute: RouteGenerator.getRoute,
+        theme: Provider.of<ThemeProvider>(context).darkTheme ? dark : light,
+        initialRoute: Routes.splashRoute,
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
+      ),
     );
   }
 }

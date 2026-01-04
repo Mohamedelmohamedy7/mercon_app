@@ -113,6 +113,9 @@ class _PhoneAuthWidgetState extends State<PhoneAuthWidget> {
     }
   }
 
+  final GlobalKey<FormFieldState> _emailKey = GlobalKey<FormFieldState>();
+  final GlobalKey<FormFieldState> _passwordKey = GlobalKey<FormFieldState>();
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -127,16 +130,105 @@ class _PhoneAuthWidgetState extends State<PhoneAuthWidget> {
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
               child: Column(
                 children: [
-                  textFormField(
-                      "email".tr(), emailController, textFieldSvg("email.svg"),
-                      validation: (value) => Validator.password(value)),
+                  // Email Field
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 14, vertical: 4),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFF6EFE7),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: TextFormField(
+                          key: _emailKey,
+                          controller: emailController,
+                          decoration: InputDecoration(
+                            // errorStyle: null,
+                            hintText: "email".tr(),
+                            border: InputBorder.none,
+                            isDense: true,
+                            contentPadding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 10),
+                            errorMaxLines: 1,
+                            errorText: '',
+                            errorStyle: TextStyle(
+                              color: Colors.transparent,
+                              fontSize: 0,
+                            ),
+                          ),
+                          validator: (value) => Validator.email(value),
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Builder(
+                        builder: (context) {
+                          final errorText = _emailKey.currentState?.errorText;
+                          return errorText != null
+                              ? Text(
+                                  errorText,
+                                  style: const TextStyle(
+                                      color: Colors.red, fontSize: 12),
+                                )
+                              : const SizedBox.shrink();
+                        },
+                      ),
+                    ],
+                  ),
                   10.height,
-                  textFormField(
-                    "password".tr(),
-                    passwordController,
-                    textFieldSvg("lock.svg"),
-                    validation: (value) => Validator.password(value),
-                    textInputAction: TextInputAction.done,
+
+                  // Password Field
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 14, vertical: 4),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFF6EFE7),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: TextFormField(
+
+                          cursorColor: Colors.black,
+
+                          key: _passwordKey,
+                          controller: passwordController,
+                          decoration: InputDecoration(
+
+                            hintText: "password".tr(),
+                            border: InputBorder.none,
+                            suffixIcon: textFieldSvg("lock.svg"),
+                            isDense: true,
+                            contentPadding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 10),
+                            errorMaxLines: 1,
+                            errorText: '',
+                            errorStyle: TextStyle(
+                              color: Colors.transparent,
+                              fontSize: 0,
+                            ),
+                          ),
+                          validator: (value) => Validator.password(value),
+                          textInputAction: TextInputAction.done,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Builder(
+                        builder: (context) {
+                          final errorText =
+                              _passwordKey.currentState?.errorText;
+                          return errorText != null
+                              ? Text(
+                                  errorText,
+                                  style: const TextStyle(
+                                      color: Colors.red, fontSize: 12),
+                                )
+                              : const SizedBox.shrink();
+                        },
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -187,6 +279,7 @@ class _PhoneAuthWidgetState extends State<PhoneAuthWidget> {
               : Consumer<LoginProvider>(
                   builder: (context, model, _) => GestureDetector(
                     onTap: () {
+                      setState(() {});
                       if (_globalKey.currentState!.validate()) {
                         model
                             .login(context,

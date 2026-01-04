@@ -1,4 +1,7 @@
 // import 'package:appinio_video_player/appinio_video_player.dart';
+import 'dart:typed_data';
+
+import 'package:core_project/View/Screen/DashBoard/VideoThumbnail.dart';
 import 'package:core_project/View/Screen/Services/ServicesCategories.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -161,15 +164,57 @@ class _NewsWidgetState extends State<NewsWidget> {
                                                   child: model.newsList[index]
                                                               .videoUrl !=
                                                           ""
-                                                      ? ClipRRect(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(15),
-                                                          child: cachedImage(
-                                                              "assets/images/youtube.jpg",
-                                                              width: 160,
-                                                              fit: BoxFit.fill),
-                                                        )
+                                                      ?      YoutubeThumbnailWidget(
+                                                    youtubeUrl: model
+                                                        .newsList[
+                                                    index]
+                                                        .videoUrl ??
+                                                        "",
+                                                  )
+
+                                                      // FutureBuilder<Uint8List?>(
+                                                      //   future: generateThumbnail(model.newsList[index]
+                                                      //       .videoUrl??""),
+                                                      //   builder: (context, snapshot) {
+                                                      //     if (!snapshot.hasData) {
+                                                      //       return Container(
+                                                      //         color: Colors.black26,
+                                                      //         child: const Center(
+                                                      //           child: CircularProgressIndicator(
+                                                      //             color: Colors.white,
+                                                      //             strokeWidth: 2,
+                                                      //           ),
+                                                      //         ),
+                                                      //       );
+                                                      //     }
+                                                      //
+                                                      //     return Container(
+                                                      //       width: 160,
+                                                      //       child: Stack(
+                                                      //         fit: StackFit.expand,
+                                                      //         children: [
+                                                      //           Image.memory(snapshot.data!, fit: BoxFit.cover),
+                                                      //           const Center(
+                                                      //             child: Icon(
+                                                      //               Icons.play_circle_fill,
+                                                      //               color: Colors.white,
+                                                      //               size: 60,
+                                                      //             ),
+                                                      //           ),
+                                                      //         ],
+                                                      //       ),
+                                                      //     );
+                                                      //   },
+                                                      // )
+                                                      // ClipRRect(
+                                                      //         borderRadius:
+                                                      //             BorderRadius
+                                                      //                 .circular(15),
+                                                      //         child: cachedImage(
+                                                      //             "assets/images/youtube.jpg",
+                                                      //             width: 160,
+                                                      //             fit: BoxFit.fill),
+                                                      //       )
                                                       : cachedImage(
                                                           model.newsList[index]
                                                               .imageUrl,

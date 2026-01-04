@@ -1,6 +1,7 @@
+import 'package:core_project/View/Widget/comman/comman_Image.dart';
 import 'package:flutter/material.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
- import '../../helper/ImagesConstant.dart';
+import '../../helper/ImagesConstant.dart';
 import '../../helper/text_style.dart';
 import '../Widget/comman/CustomAppBar.dart';
 import 'DashBoard/DashBoardSCreen.dart';
@@ -51,6 +52,7 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
         appBar: CustomAppBar(
           needBack: true,
           title: widget.project.title,
+          fontSize: 16,
           backgroundImage: AssetImage(ImagesConstants.backgroundImage),
         ),
         body: SingleChildScrollView(
@@ -59,19 +61,45 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // YouTube Video
-              ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: SizedBox(
-                  width: double.infinity,
-                  height: MediaQuery.of(context).size.height * 0.35,
-                  child: YoutubePlayer(
-                    controller: _controller,
-                    aspectRatio: 16 / 9,
-                  ),
+
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.32,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: widget.project.images.length + 1,
+                  itemBuilder: (context, index) {
+                    if (index == 0) {
+
+                      _controller = YoutubePlayerController.fromVideoId(
+                        videoId: widget.videoId,
+                        params: const YoutubePlayerParams(
+                          origin: "https://www.youtube-nocookie.com",
+                          mute: false,
+                          showControls: true,
+                          showFullscreenButton: true,
+                        ),
+                      );
+                      return _buildVideoItem(context);
+                    }
+                    final imageUrl = widget.project.images[index - 1];
+                    return _buildImageItem(imageUrl);
+                  },
                 ),
               ),
+
+              // ClipRRect(
+              //   borderRadius: BorderRadius.circular(12),
+              //   child: SizedBox(
+              //     width: double.infinity,
+              //     height: MediaQuery.of(context).size.height * 0.35,
+              //     child: YoutubePlayer(
+              //       controller: _controller,
+              //       aspectRatio: 16 / 9,
+              //     ),
+              //   ),
+              // ),
               const SizedBox(height: 16),
-      
+
               // Description
               Card(
                 shape: RoundedRectangleBorder(
@@ -86,9 +114,9 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
                   ),
                 ),
               ),
-      
+
               const SizedBox(height: 5),
-      
+
               // Location & Type
               if (details.location != null || details.type != null)
                 Card(
@@ -104,8 +132,9 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
                         if (details.location != null)
                           Row(
                             children: [
-                                Icon(Icons.location_on,
-                                  size: 18, color:  Theme.of(context).primaryColor),
+                              Icon(Icons.location_on,
+                                  size: 18,
+                                  color: Theme.of(context).primaryColor),
                               const SizedBox(width: 6),
                               Expanded(
                                 child: Text(
@@ -120,8 +149,9 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
                         if (details.type != null)
                           Row(
                             children: [
-                                Icon(Icons.business_center,
-                                  size: 18, color: Theme.of(context).primaryColor),
+                              Icon(Icons.business_center,
+                                  size: 18,
+                                  color: Theme.of(context).primaryColor),
                               const SizedBox(width: 6),
                               Expanded(
                                 child: Text(
@@ -136,9 +166,9 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
                     ),
                   ),
                 ),
-      
+
               const SizedBox(height: 5),
-      
+
               // Optional Details
               if ([
                 details.size,
@@ -182,9 +212,9 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
                     ),
                   ),
                 ),
-      
+
               const SizedBox(height: 16),
-      
+
               // Partners
               if (details.partners != null && details.partners!.isNotEmpty)
                 Column(
@@ -203,16 +233,19 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
                             padding: const EdgeInsets.only(right: 6),
                             child: Chip(
                               label: Text(details.partners![index],
-                                  style: CustomTextStyle.semiBold12Black.copyWith(
-                                      fontSize: 12,
-                                      color: Theme.of(context).primaryColor)),
+                                  style: CustomTextStyle.semiBold12Black
+                                      .copyWith(
+                                          fontSize: 12,
+                                          color:
+                                              Theme.of(context).primaryColor)),
                               avatar: Icon(Icons.business,
                                   size: 16,
                                   color: Theme.of(context).primaryColor),
                               side: BorderSide(
                                   color: Theme.of(context).primaryColor),
-                              backgroundColor:
-                                  Theme.of(context).primaryColor.withOpacity(0.3),
+                              backgroundColor: Theme.of(context)
+                                  .primaryColor
+                                  .withOpacity(0.3),
                             ),
                           );
                         },
@@ -220,9 +253,9 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
                     ),
                   ],
                 ),
-      
+
               const SizedBox(height: 16),
-      
+
               // Features
               if (details.features != null && details.features!.isNotEmpty)
                 Column(
@@ -244,13 +277,16 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
                                   size: 16,
                                   color: Theme.of(context).primaryColor),
                               label: Text(details.features![index],
-                                  style:CustomTextStyle.semiBold12Black.copyWith(
-                                      fontSize: 12,
-                                      color: Theme.of(context).primaryColor)),
+                                  style: CustomTextStyle.semiBold12Black
+                                      .copyWith(
+                                          fontSize: 12,
+                                          color:
+                                              Theme.of(context).primaryColor)),
                               side: BorderSide(
                                   color: Theme.of(context).primaryColor),
-                              backgroundColor:
-                                  Theme.of(context).primaryColor.withOpacity(0.3),
+                              backgroundColor: Theme.of(context)
+                                  .primaryColor
+                                  .withOpacity(0.3),
                             ),
                           );
                         },
@@ -258,9 +294,9 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
                     ),
                   ],
                 ),
-      
+
               const SizedBox(height: 16),
-      
+
               // Amenities
               if (details.amenities != null && details.amenities!.isNotEmpty)
                 Column(
@@ -282,13 +318,16 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
                                   size: 16,
                                   color: Theme.of(context).primaryColor),
                               label: Text(details.amenities![index],
-                                  style:CustomTextStyle.semiBold12Black.copyWith(
-                                      fontSize: 12,
-                                      color: Theme.of(context).primaryColor)),
+                                  style: CustomTextStyle.semiBold12Black
+                                      .copyWith(
+                                          fontSize: 12,
+                                          color:
+                                              Theme.of(context).primaryColor)),
                               side: BorderSide(
                                   color: Theme.of(context).primaryColor),
-                              backgroundColor:
-                                  Theme.of(context).primaryColor.withOpacity(0.3),
+                              backgroundColor: Theme.of(context)
+                                  .primaryColor
+                                  .withOpacity(0.3),
                             ),
                           );
                         },
@@ -296,7 +335,7 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
                     ),
                   ],
                 ),
-      
+
               const SizedBox(height: 24),
             ],
           ),
@@ -304,4 +343,54 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
       ),
     );
   }
+
+  Widget _buildImageItem(String imageUrl) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 12),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(12),
+        child: cachedImage(
+          imageUrl,
+          width: 260,
+          fit: BoxFit.cover,
+
+        ),
+      ),
+    );
+  }
+  //
+  // Widget _buildVideoItem(BuildContext context) {
+  //   return Padding(
+  //     padding: const EdgeInsets.only(right: 12),
+  //     child: ClipRRect(
+  //       borderRadius: BorderRadius.circular(12),
+  //       child: SizedBox(
+  //         width: MediaQuery.of(context).size.width * 0.8,
+  //         child: YoutubePlayer(
+  //           controller: _controller,
+  //           aspectRatio: 16 / 9,
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
+
+  Widget _buildVideoItem(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 12),
+      child: RepaintBoundary(
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(12),
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width * 0.8,
+            child: YoutubePlayer(
+              controller: _controller,
+              aspectRatio: 16 / 9,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
 }

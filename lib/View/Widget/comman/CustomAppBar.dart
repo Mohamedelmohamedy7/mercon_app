@@ -15,7 +15,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   bool? needBack;
 
   Widget? bottom;
-
+  final double? fontSize;
   CustomAppBar({
     super.key,
     this.needBack = true,
@@ -23,14 +23,16 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     required this.backgroundImage,
     this.leading,
     this.bottom,
+    this.fontSize,
   });
 
 //backGroundOrder.png
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: bottom == null ? MediaQuery.of(context).size.height * 0.0799:
-      MediaQuery.of(context).size.height * 0.145,
+      height: bottom == null
+          ? MediaQuery.of(context).size.height * 0.0799
+          : MediaQuery.of(context).size.height * 0.145,
       // decoration: BoxDecoration(
       //   image: DecorationImage(
       //     image: backgroundImage,
@@ -71,7 +73,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                     : Text(
                         title,
                         style: CustomTextStyle.semiBold12Black.copyWith(
-                          fontSize: 12,
+                          fontSize: fontSize ?? 12,
                           color: Theme.of(context).primaryColor,
                         ),
                       ),
@@ -81,12 +83,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 10),
                   // child: cachedImage( ImagesConstants.logo, width: 50, height: 50),
-                  child: cachedImage(
-                      globalAccountData.getCompoundLogo(),
+                  child: cachedImage(globalAccountData.getCompoundLogo(),
                       width: 40,
                       height: 50,
-                    color: Theme.of(context).primaryColor
-                      ),
+                      color: Theme.of(context).primaryColor),
                 ),
                 10.width,
               ],
@@ -95,7 +95,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               height: 3,
               color: Theme.of(context).primaryColor,
             ),
-            bottom??SizedBox(),
+            bottom ?? SizedBox(),
           ],
         ),
       ),
