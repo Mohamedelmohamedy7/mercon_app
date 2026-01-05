@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-List<CustomerServiceModel> customerServiceFromJson(String str) =>
+List<CustomerServiceModel> customerServiceFromJson(String str) =>json.decode(str)["data"].isEmpty?[]:
     List<CustomerServiceModel>.from(
         json.decode(str)["data"].map((x) => CustomerServiceModel.fromJson(x)));
 
