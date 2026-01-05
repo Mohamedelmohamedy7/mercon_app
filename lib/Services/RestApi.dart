@@ -248,7 +248,7 @@ Future<String> getFunctionRestApi(
     if (navigate) {
       handleError(response, context,
           url: urlEndPoint + paramaters.trim(),
-          method: 'GET',
+          method: 'GET',showError:urlEndPoint.contains("CheckUserValidation")?false:true,
           requestData: paramaters);
     }
 
@@ -337,18 +337,18 @@ void handleError(
 // }
 
 void infoPost(String url, Object? body, Object? headers) {
-  talker.info(
-      " 🗣️ 🗣️ 🗣️ POST $url \n \n ----------------------- \n Request Headers:${encoder.convert(headers)} \n ----------------------- \n Request Body:${body}");
-
-  log("Request Body:${body}");
+  // talker.info(
+  //     " 🗣️ 🗣️ 🗣️ POST $url \n \n ----------------------- \n Request Headers:${encoder.convert(headers)} \n ----------------------- \n Request Body:${body}");
+  //
+  // log("Request Body:${body}");
 }
 
 void goodPost(String url, http.Response response) {
-  try {
-    talker.info(
-        "✅✅✅✅ 👍🏻 🎖 Success Response 👍🏻 👑 POST REST API BODY ${response.statusCode}$url \n Response Body:${encoder.convert(json.decode(response.body))}");
-  } catch (e) {
-    talker.info(
-        "✅✅✅✅ 👍🏻 🎖 Success Response 👍🏻 👑 POST REST API BODY ${response.statusCode}$url \n Response Body:${response.body}");
-  }
+  // try {
+  //   talker.info(
+  //       "✅✅✅✅ 👍🏻 🎖 Success Response 👍🏻 👑 POST REST API BODY ${response.statusCode}$url \n Response Body:${encoder.convert(json.decode(response.body))}");
+  // } catch (e) {
+  //   talker.info(
+  //       "✅✅✅✅ 👍🏻 🎖 Success Response 👍🏻 👑 POST REST API BODY ${response.statusCode}$url \n Response Body:${response.body}");
+  // }
 }

@@ -38,7 +38,7 @@ class _CarouselSliderExampleState extends State<CarouselSliderExample> {
             children: [
               Container(
                 width: MediaQuery.of(context).size.width, // عرض الشاشة كله
-                height: 210,
+                height: 230,
                 child: CarouselSlider.builder(
                   itemCount: model.mobileSliders.length,
                   itemBuilder: (BuildContext context, int index, int realIndex) {
@@ -59,7 +59,7 @@ class _CarouselSliderExampleState extends State<CarouselSliderExample> {
                         _currentPage = index;
                       });
                     },
-                    height: 180,
+                    height: 205,
                     viewportFraction: 0.85,
                     enableInfiniteScroll: true,
                     autoPlay: true,

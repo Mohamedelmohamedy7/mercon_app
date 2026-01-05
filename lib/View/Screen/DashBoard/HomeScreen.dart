@@ -66,63 +66,67 @@ class _HomeScreenState extends State<HomeScreen> {
         body: CustomAnimatedWidget(
           child: Container(
             // //color: BACKGROUNDCOLOR,
-            child: ListView(
-              children: [
-                Stack(
-                  children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: 330,
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).primaryColor,
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(20),
-                          bottomRight: Radius.circular(20),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  20.height,
+                  Stack(
+                    children: [
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 340,
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).primaryColor,
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(20),
+                            bottomRight: Radius.circular(20),
+                          ),
                         ),
                       ),
-                    ),
-                    Column(
-                      children: [
-                        20.height,
-                        textAnimation(),
-                        5.height,
-                        CarouselSliderExample(),
-                        10.height,
-                        ProjectsListView(projects:EasyLocalization.of(context)?.currentLocale?.languageCode == 'ar' ?
-                        projectsArabic:projects,),
+                      Column(
+                        children: [
+                          20.height,
+                          textAnimation(),
+                          5.height,
+                          CarouselSliderExample(),
+                          15.height,
+                          Provider.of<UnitsProvider>(context)
+                              .modelUnitServiceList
+                              .length >
+                              0
+                              ? Provider.of<UnitsProvider>(context)
+                              .modelUnitServiceList
+                              .length >
+                              1
+                              ? UnitsWidget()
+                              : Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 5),
+                            child: OneUnitWidget(
+                                myUnit: Provider.of<UnitsProvider>(context)
+                                    .modelUnitServiceList),
+                          )
+                              : SizedBox(),
+                          10.height,
+                          ProjectsListView(projects:EasyLocalization.of(context)?.currentLocale?.languageCode == 'ar' ?
+                          projectsArabic:projects,),
 
-                        10.height,
-                        Provider.of<UnitsProvider>(context)
-                            .modelUnitServiceList
-                            .length >
-                            0
-                            ? Provider.of<UnitsProvider>(context)
-                            .modelUnitServiceList
-                            .length >
-                            1
-                            ? UnitsWidget()
-                            : Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 5),
-                          child: OneUnitWidget(
-                              myUnit: Provider.of<UnitsProvider>(context)
-                                  .modelUnitServiceList),
-                        )
-                            : SizedBox(),
-                        10.height,
-                      ],
-                    ),
-                  ],
-                ),
-                // DeliveryCard(
-                //   home_provider: home_provider!,
-                // ),
-                // 10.height,
-                // InternalRegulations(
-                //   home_provider: home_provider!,
-                // ),
-                10.height,
-                NewsWidget(),
-              ],
+
+                          10.height,
+                        ],
+                      ),
+                    ],
+                  ),
+                  // DeliveryCard(
+                  //   home_provider: home_provider!,
+                  // ),
+                  // 10.height,
+                  // InternalRegulations(
+                  //   home_provider: home_provider!,
+                  // ),
+                  10.height,
+                  NewsWidget(),
+                ],
+              ),
             ),
           ),
         ),
@@ -193,24 +197,40 @@ class _HomeScreenState extends State<HomeScreen> {
             child: DropdownButtonHideUnderline(
               child: DropdownButton<String>(
                 value: currentCompound,
+                selectedItemBuilder: (BuildContext context) {
+                  return compoundList.map((e) {
+                    return Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        e,
+                        style: const TextStyle(
+                          color: Colors.black87,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w700,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    );
+                  }).toList();
+                },
                 hint: Text(
                   currentCompound,
                   style: const TextStyle(
-                    color: Colors.grey,fontSize: 14,
-                    fontWeight: FontWeight.w500,
+                    color: Colors.black87,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
                   ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
                 icon: const Icon(
                   Icons.arrow_drop_down,
                   color: Colors.black87,
                   size: 26,
                 ),
-                style: const TextStyle(
-                  color: Colors.black87,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                ),
                 dropdownColor: Theme.of(context).primaryColor,
+                iconSize: 26,
                 elevation: 8,
                 borderRadius: BorderRadius.circular(20),
                 isExpanded: true,
@@ -220,7 +240,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       currentCompound = value;
                     });
                     globalAccountData.setCurrentCompound(value);
-
                     Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(builder: (context) => const SplashScreen()),
@@ -228,22 +247,26 @@ class _HomeScreenState extends State<HomeScreen> {
                     );
                   }
                 },
-                items: compoundList.map((e) => DropdownMenuItem<String>(
-                  value: e,
-                  child: Center(
-                    child: Text(
-                      e,
-                      style: const TextStyle(
-                        color: Colors.black87,fontSize: 14,
-                        fontWeight: FontWeight.w500,
+                items: compoundList.map((e) {
+                  return DropdownMenuItem<String>(
+                    value: e,
+                    child: Center(
+                      child: Text(
+                        e,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
                     ),
-                  ),
-                )).toList(),
+                  );
+                }).toList(),
               ),
-            ),
+            )
+
           ),
         ),
 
@@ -607,7 +630,8 @@ class ProjectsListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width,height:  MediaQuery.of(context).size.height*0.35,
+      width: MediaQuery.of(context).size.width,height:
+    MediaQuery.of(context).size.height*0.33,
 
       child: ListView.builder(
         padding: const EdgeInsets.symmetric(horizontal:4,vertical: 1),
@@ -618,7 +642,8 @@ class ProjectsListView extends StatelessWidget {
           return Container(
               margin: EdgeInsets.symmetric(horizontal: 4),
 
-              width:  MediaQuery.of(context).size.width*0.55,height: 220,
+              width:  MediaQuery.of(context).size.width*0.55,height:
+              MediaQuery.of(context).size.height*0.2,
               child: InkWell(
                   onTap: (){
                     pushRoute(context: context, route: ProjectDetailPage(
