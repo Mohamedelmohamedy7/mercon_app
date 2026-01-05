@@ -130,12 +130,11 @@ class _EmployeeDashboardScreenState extends State<EmployeeDashboardScreen> {
           currentIndex: selected ?? 0,
         ),
         body: Stack(
-
           children: [
             screens[selected],
             Positioned(
               top: 80,
-              child:     languageToggleButton(context),
+              child: languageToggleButton(context),
             ),
           ],
         ),
@@ -168,5 +167,78 @@ Widget floatingLogo({required BuildContext context}) {
     //   width: 120,
     //   fit: BoxFit.contain,
     // ),
+  );
+}
+
+Widget languageToggleButton(BuildContext context) {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.start,
+    children: [
+      SizedBox(
+        width: 5,
+      ),
+      Container(
+        height: 45,
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(2),
+        ),
+        child: ToggleButtons(
+          isSelected: [
+            context.locale == Locale('ar', 'EG'),
+            context.locale == Locale('en', 'US'),
+          ],
+          onPressed: (int index) {
+            if (index == 0) {
+              context.locale = Locale('ar', 'EG');
+            } else {
+              context.locale = Locale('en', 'US');
+            }
+          },
+          children: [
+            Row(
+              children: [
+                SizedBox(
+                  width: 10,
+                ),
+                Image.asset('assets/images/eg.png', width: 17),
+                SizedBox(width: 8),
+                Text("AR",
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    )),
+                SizedBox(
+                  width: 10,
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                SizedBox(
+                  width: 10,
+                ),
+                Image.asset('assets/images/us.png', width: 17),
+                SizedBox(width: 8),
+                Text("EN",
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    )),
+                SizedBox(
+                  width: 10,
+                ),
+              ],
+            ),
+          ],
+          borderRadius: BorderRadius.circular(7),
+          borderColor: Colors.grey.shade400,
+          selectedColor: Colors.white,
+          fillColor: Theme.of(context).primaryColor,
+          color: Colors.black,
+          selectedBorderColor: Colors.blueAccent,
+        ),
+      ),
+    ],
   );
 }

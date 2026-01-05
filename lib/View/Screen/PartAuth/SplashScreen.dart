@@ -28,13 +28,15 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     /// support Notifications Dialogs
-    Future.delayed(const Duration(seconds: 0), () async {
+    super.initState();
+    Future.delayed(const Duration(seconds: 3), () async {
       await Provider.of<LoginProvider>(context, listen: false)
           .checkUserValidation(context);
+      getNextScreen();
+
+      appNotificationDialogFunctions(context);
     });
-    getNextScreen();
-    super.initState();
-    appNotificationDialogFunctions(context);
+
   }
 
   getNextScreen() async {
@@ -73,13 +75,14 @@ class _SplashScreenState extends State<SplashScreen> {
           } else {
             if (globalAccountData.getUserType() == AppConstants.IS_OWNER) {
               Future.delayed(
-                  const Duration(seconds: 2),
+                  const Duration(seconds: 4),
                   () => pushRemoveUntilRoute(
                         context: context,
                         //    route: onBoardingScreen(),
                         route: LoginScreen(),
                       ));
             } else {
+
               pushRemoveUntilRoute(
                 context: context,
                 route: LoginScreen(),
@@ -99,73 +102,79 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body:Stack(
-        children: <Widget>[
-          cachedImage(
-            "assets/images/splashScreen.png",
-            width: w(context),
-            height: h(context),
-            fit: BoxFit.cover,
-          ),
-          Center(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                FadeInLeft(
-                  child: cachedImage(
-                    "assets/images/logo_2.png",
-                    width: 80,
-                    height: 70,
-                    fit: BoxFit.contain,
-                    color: Colors.white,
-                  ),
-                ),
-                FadeInDown(
-                  child: cachedImage(
-                    "assets/images/logo_3.png",
-                    width: 60,
-                    height: 70,
-                    fit: BoxFit.contain,
-                    color: Colors.white,
-                  ),
-                ),
-                FadeInRight(
-                  child: cachedImage(
-                    "assets/images/logo_1.png",
-                    width: 90,
-                    height: 90,
-                    fit: BoxFit.contain,
-                    color: Colors.white,
-                  ),
-                ),
-              ],
+    return Directionality(
+      textDirection: TextDirection.ltr,
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body:Stack(
+          children: <Widget>[
+            cachedImage(
+              "assets/images/splashScreen.png",
+              width: w(context),
+              height: h(context),
+              fit: BoxFit.cover,
             ),
-          ),
-           FadeInUp(
-             duration: const Duration(seconds: 2),
-             child: Align(
-              alignment: Alignment(0, 1.05),
+            Center(
               child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
 
-                  cachedImage(
-                    "assets/images/company.png",
-                    width: 80,
-                    height: 120, color: Colors.white
+
+                  FadeInLeft(
+                    child: cachedImage(
+                      "assets/images/logo_1.png",
+                      width: 90,
+                      height: 90,
+                      fit: BoxFit.contain,
+                      color: Colors.white,
+                    ),
                   ),
-                  Text("Powered By",style:  CustomTextStyle.semiBold12Black
-                      .copyWith(fontSize: 11,  color: Colors.white),),
+                  FadeInDown(
+                    child: cachedImage(
+                      "assets/images/logo_3.png",
+                      width: 60,
+                      height: 70,
+                      fit: BoxFit.contain,
+                      color: Colors.white,
+                    ),
+                  ),
+                  FadeInRight(
+                    child: cachedImage(
+                      "assets/images/logo_2.png",
+                      width: 80,
+                      height: 70,
+                      fit: BoxFit.contain,
+                      color: Colors.white,
+                    ),
+                  ),
+
                 ],
               ),
-                       ),
-           ),
-        ],
-      )
+            ),
+             FadeInUp(
+               duration: const Duration(seconds: 2),
+               child: Align(
+                alignment: Alignment(0, 1.07),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("Powered By",style:  CustomTextStyle.semiBold12Black
+                        .copyWith(fontSize: 13,  color: Colors.white),),
+                    cachedImage(
+                      "assets/images/company.png",
+                      width: 80,
+                      height: 120, color: Colors.white
+                    ),
 
+                  ],
+                ),
+                         ),
+             ),
+          ],
+        )
+
+      ),
     );
   }
 }

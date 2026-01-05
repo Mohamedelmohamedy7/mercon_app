@@ -10,7 +10,7 @@ import "package:easy_localization/easy_localization.dart";
 import "package:flutter/material.dart";
 
 Future navigatorManager({required BuildContext context}) {
-  return Future.delayed(const Duration(seconds: 3), () async {
+  return Future.delayed(const Duration(seconds: 4), () async {
     await globalAccountData.init().then((value) async {
       if (globalAccountData.getUserType() == AppConstants.IS_OWNER) {
         return pushRemoveUntilRoute(

@@ -9,6 +9,7 @@ import 'package:core_project/helper/ImagesConstant.dart';
 import 'package:core_project/helper/text_style.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -24,6 +25,7 @@ import '../../../Model/UnitUserFull.dart';
 import '../../../Provider/RegisterProvider.dart';
 import '../../../Provider/UnitsProvider.dart';
 import '../../../Utill/ExpandableContainer.dart';
+import '../../../Utill/Local_User_Data.dart';
 import '../../../Utill/validator.dart';
 import '../../../helper/ButtonAction.dart';
 import '../../../helper/SnackBarScreen.dart';
@@ -203,6 +205,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
       setState(() {});
     });
   }
+  String currentCompound = "Riverton New Cairo";
+  List<String> compoundList = [
+    "Riverton New Cairo",
+    "Nurai Golden Square",
+    "VX Golden Square",
+    "VX N90",
+    "Pavo Tower",
+  ];
 
   Future<void> pickImageContractCamera() async {
     await pickImage(ImageSource.camera, (File imageTemp) {
@@ -396,6 +406,108 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   ],
                                 ),
                                 ModelSelectionAlert(
+                                  child:     Container(
+                                    margin: EdgeInsets.only(top: 10),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'select_compound'.tr(),
+                                          style: CustomTextStyle.semiBold12Black,
+                                        ),
+                                    10.height,
+                                    Container(
+                                        height: 45,
+
+                                        decoration: BoxDecoration(
+                                          color: Colors.grey[50],
+                                          borderRadius: BorderRadius.circular(25),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.black12,
+                                              blurRadius: 5,
+                                              offset: Offset(0, 2),
+                                            ),
+                                          ],
+                                          border: Border.all(
+                                            color: Theme.of(context).primaryColor,
+                                            width: 1.5,
+                                          ),
+                                        ),
+                                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                                        child: DropdownButtonHideUnderline(
+                                          child: DropdownButton<String>(
+                                            value: currentCompound,
+                                            selectedItemBuilder: (BuildContext context) {
+                                              return compoundList.map((e) {
+                                                return Align(
+                                                  alignment: Alignment.centerLeft,
+                                                  child: Text(
+                                                    e,
+                                                    style: const TextStyle(
+                                                      color: Colors.black87,
+                                                      fontSize: 12,
+                                                      fontWeight: FontWeight.w700,
+                                                    ),
+                                                    maxLines: 1,
+                                                    overflow: TextOverflow.ellipsis,
+                                                  ),
+                                                );
+                                              }).toList();
+                                            },
+                                            hint: Text(
+                                              currentCompound,
+                                              style: const TextStyle(
+                                                color: Colors.black87,
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                            icon: const Icon(
+                                              Icons.arrow_drop_down,
+                                              color: Colors.black87,
+                                              size: 26,
+                                            ),
+                                            dropdownColor: Theme.of(context).primaryColor,
+                                            iconSize: 26,
+                                            elevation: 8,
+                                            borderRadius: BorderRadius.circular(20),
+                                            isExpanded: true,
+                                            onChanged: (String? value) {
+                                              if (value != null) {
+                                                setState(() {
+                                                  currentCompound = value;
+                                                });
+                                                globalAccountData.setCurrentCompound(value);
+                                              }
+                                            },
+                                            items: compoundList.map((e) {
+                                              return DropdownMenuItem<String>(
+                                                value: e,
+                                                child: Center(
+                                                  child: Text(
+                                                    e,
+                                                    style: const TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 14,
+                                                      fontWeight: FontWeight.w600,
+                                                    ),
+                                                    maxLines: 1,
+                                                    overflow: TextOverflow.ellipsis,
+                                                  ),
+                                                ),
+                                              );
+                                            }).toList(),
+                                          ),
+                                        )
+
+                                    ),
+                                      ],
+                                    ),
+                                  ),
                                   selectedModel:
                                       itemSelected[index].selectedModel,
                                   buildingModel:

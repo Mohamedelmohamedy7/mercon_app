@@ -277,6 +277,8 @@ class ModelSelectionAlert extends StatefulWidget {
   final BuildingModel? buildingModel;
   final LevelModel? levelModel;
   final UnitModel? unitModel;
+
+  Widget ? child;
   bool? isRegister = false;
   final Function(ALLModelModel?) onSelectModel;
   final Function(BuildingModel?) onSelectBuilding;
@@ -291,6 +293,7 @@ class ModelSelectionAlert extends StatefulWidget {
     required this.unitModel,
     required this.onSelectModel,
     this.isRegister,
+    this.child,
     required this.onSelectBuilding,
     required this.onSelectLevel,
     required this.onSelectUnits,
@@ -497,6 +500,7 @@ class _ModelSelectionAlertState extends State<ModelSelectionAlert> {
             ),
           ],
         ),
+        widget.child ?? SizedBox(),
       ],
     );
   }
