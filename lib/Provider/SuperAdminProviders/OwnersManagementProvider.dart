@@ -77,12 +77,12 @@ class OwnersManagementProvider extends ChangeNotifier {
   }
 
   Future<void> deleteUser(context, {required int? id}) async {
-    final res = await putFunctionRestApi(
+    final res = await DeleteFunctionRestApi(
       context,
-      url: DeleteUser + id.toString(),
+      url: DeleteUser + "?Id=${id.toString()}",
     );
 
-    if (res.isEmpty) {
+    if (res.isEmpty||true) {
       getOwnerUserUnits(context);
     }
     S_finishLoader();
@@ -92,7 +92,7 @@ class OwnersManagementProvider extends ChangeNotifier {
   UnitDetailsModel? unitDetailsModel;
 
   bool showAcceptOrRejectOwnerUnit = false;
-  Future<void> getUnitOwnerDetails(context, {required int? id}) async {
+  Future<void> getUnitOwnerDetails(context, {required int? id,bool pop=false}) async {
     startLoader();
     unitDetailsModel = null;
     final res = await getFunctionRestApi(context,
@@ -167,15 +167,19 @@ class OwnersManagementProvider extends ChangeNotifier {
   }
 
   CheckModel? checkModel;
+  bool checkUnitBelongingToAnotherOwnerLoading=false;
   Future<CheckModel?> checkUnitBelongingToAnotherOwner(context,
       {required int? unitId}) async {
     checkModel = null;
+    checkUnitBelongingToAnotherOwnerLoading=true;
+    notifyListeners();
     final res = await postFunctionRestApi(context,
         url: CheckUnitBelongingToAnotherOwner,
         body: json.encode({"unitID": unitId}));
     if (json.decode(res).isNotEmpty)
       checkModel = CheckModel.fromJson(json.decode(res));
-
+    checkUnitBelongingToAnotherOwnerLoading=false;
+    notifyListeners();
     S_finishLoader();
     return checkModel;
   }
