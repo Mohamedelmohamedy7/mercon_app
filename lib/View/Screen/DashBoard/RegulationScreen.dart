@@ -1,7 +1,6 @@
-import 'package:easy_localization/easy_localization.dart';
+import 'package:easy_localization/easy_localization.dart' as lang;
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
-// import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
 import '../../../helper/ImagesConstant.dart';
 import '../../Widget/comman/CustomAppBar.dart';
@@ -22,18 +21,21 @@ class _RegulationScreenState extends State<RegulationScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        appBar: CustomAppBar(
-          title: 'internalRegulation'.tr(),
-          needBack: true,
-          backgroundImage: AssetImage(ImagesConstants.backgroundImage),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: SingleChildScrollView(
-            child: HtmlWidget(widget.internalRegulationsText,
-            textStyle: TextStyle(fontSize: 15),
-              enableCaching: true,
+      child: Directionality(
+        textDirection: TextDirection.ltr,
+        child: Scaffold(
+          appBar: CustomAppBar(
+            title: 'internalRegulation'.tr(),
+            needBack: true,
+            backgroundImage: AssetImage(ImagesConstants.backgroundImage),
+          ),
+          body: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SingleChildScrollView(
+              child: HtmlWidget(widget.internalRegulationsText,
+              textStyle: TextStyle(fontSize: 15),
+                enableCaching: true,
+              ),
             ),
           ),
         ),

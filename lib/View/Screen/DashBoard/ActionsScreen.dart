@@ -164,7 +164,7 @@ class _ActionsScreenState extends State<ActionsScreen>
                            ? "متابعة وحداتك الخاصة بـ"
                            : "Current compound is",
                            style:CustomTextStyle.semiBold14Black.copyWith(fontSize: 12)),
-                      const SizedBox(width: 35),
+                      const SizedBox(width: 5),
                        Expanded(
                         child: SizedBox(
 

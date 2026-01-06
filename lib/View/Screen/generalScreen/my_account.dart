@@ -93,7 +93,7 @@ class _MyAccountState extends State<MyAccount> {
                     margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 6),
                     clipBehavior: Clip.antiAlias,
                     child: SizedBox(
-                      height: 140,
+                      height: 120,
                       child: Row(
                         children: [
 
@@ -267,15 +267,20 @@ class _MyAccountState extends State<MyAccount> {
         8.width,
         Expanded(
           child: RichText(
+            textHeightBehavior: const TextHeightBehavior(
+              applyHeightToFirstAscent: false,
+              applyHeightToLastDescent: false,
+            ),
             text: TextSpan(
+              style: const TextStyle(height: 1.1),
               children: [
                 TextSpan(
                   text: "$title: ",
-                  style: CustomTextStyle.medium14Black,
+                  style: CustomTextStyle.medium10Black.copyWith(height: 1.1),
                 ),
                 TextSpan(
                   text: value,
-                  style: CustomTextStyle.bold14black,
+                  style: CustomTextStyle.medium10Black.copyWith(height: 1.1),
                 ),
               ],
             ),

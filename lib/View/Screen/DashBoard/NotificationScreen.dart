@@ -238,13 +238,13 @@ class _NotificationScreenState extends State<NotificationScreen>
           ),
         ),
         if (showDivider) ...[
-          const SizedBox(width: 10),
+          const SizedBox(width: 2),
           Container(
             width: 1,
             height: 30,
             color: Theme.of(context).primaryColor,
           ),
-          const SizedBox(width: 10),
+          const SizedBox(width: 2),
         ],
       ],
     );

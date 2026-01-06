@@ -174,7 +174,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
         ),
-         90.width,
+         50.width,
          Expanded(
           child: Container(
             height: 45,
@@ -631,7 +631,7 @@ class ProjectsListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,height:
-    MediaQuery.of(context).size.height*0.33,
+    MediaQuery.of(context).size.height*0.35,
 
       child: ListView.builder(
         padding: const EdgeInsets.symmetric(horizontal:4,vertical: 1),

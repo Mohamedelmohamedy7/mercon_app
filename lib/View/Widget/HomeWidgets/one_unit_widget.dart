@@ -54,7 +54,7 @@ class OneUnitWidget extends StatelessWidget {
                         const EdgeInsets.symmetric(vertical: 8,),
                     clipBehavior: Clip.antiAlias,
                     child: SizedBox(
-                      height: 115,
+                      height: 110,
                       child: Row(
                         children: [
                           /// IMAGE SIDE
@@ -149,15 +149,8 @@ class OneUnitWidget extends StatelessWidget {
                                     value: myUnit[0].levelName,
                                     trailing: Row(
                                       children: [
-                                        Icon(Icons.home_work_outlined,
-                                            size: 16,
-                                            color:
-                                                Theme.of(context).primaryColor),
-                                        4.width,
-                                        Text(
-                                          "floor_number".tr()  + myUnit[0].unitNumber,
-                                          style: CustomTextStyle.bold14black,
-                                        ),
+
+
                                       ],
                                     ),
                                   ),
@@ -281,11 +274,11 @@ Widget _infoRow({
             children: [
               TextSpan(
                 text: "$title: ",
-                style: CustomTextStyle.medium14Black.copyWith(height: 1.1),
+                style: CustomTextStyle.medium10Black.copyWith(height: 1 ,fontSize: 12),
               ),
               TextSpan(
                 text: value,
-                style: CustomTextStyle.bold14black.copyWith(height: 1.1),
+                style: CustomTextStyle.bold14black.copyWith(height: 1 ,fontSize: 10),
               ),
             ],
           ),
