@@ -547,6 +547,7 @@ class _RequestUnitDetailsScreenState extends State<RequestUnitDetailsScreen> {
                                                                                           ownerID: unitDetails.ownerUnitsID,
                                                                                           unitID: unitDetails.unitID,
                                                                                           statusID: 2,
+                                                                                          ownerDataID: unitDetails.ownerID,
                                                                                         )
                                                                                         .then((value) => model.getRequestUnitOwnerDetails(context, unitId: widget.unitId));
                                                                                   } else if (value?.data.toString() == "1") {
@@ -563,6 +564,7 @@ class _RequestUnitDetailsScreenState extends State<RequestUnitDetailsScreen> {
                                                                                                   ownerID: unitDetails.ownerUnitsID,
                                                                                                   unitID: unitDetails.unitID,
                                                                                                   statusID: 2,
+                                                                                                  ownerDataID: unitDetails.ownerID,
                                                                                                 )
                                                                                                 .then((value) => model.getRequestUnitOwnerDetails(context, unitId: widget.unitId));
                                                                                             Navigator.pop(context);
