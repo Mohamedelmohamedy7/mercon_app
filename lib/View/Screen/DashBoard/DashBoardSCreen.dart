@@ -116,6 +116,9 @@ class _DashBoardScreenState extends State<DashBoardScreen>
               barAnimation: BarAnimation.transform3D,
               iconStyle: IconStyle.animated,
             ),
+            hasNotch: false,
+            fabLocation: StylishBarFabLocation.center,
+            currentIndex: selected ?? 0,
             onTap: (index) {
               setState(() {
                 selected = index;
@@ -281,9 +284,7 @@ class _DashBoardScreenState extends State<DashBoardScreen>
                 ),
               ),
             ],
-            hasNotch: false,
-            fabLocation: StylishBarFabLocation.center,
-            currentIndex: selected ?? 0,
+
           ),
           floatingActionButton: GestureDetector(
             onTap: () {
